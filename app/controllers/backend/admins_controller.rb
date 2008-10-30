@@ -1,11 +1,11 @@
-class Backend::AdminsController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
-  
+class Backend::AdminsController < Backend::BaseController
+  def index
+    @admins = Admin.all
+  end
 
-  # render new.rhtml
   def new
     @admin = Admin.new
+    @admin.password = @admin.password_confirmation = nil
   end
  
   def create
@@ -18,10 +18,10 @@ class Backend::AdminsController < ApplicationController
       # button. Uncomment if you understand the tradeoffs.
       # reset session
       self.current_admin = @admin # !! now logged in
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      redirect_back_or_default(admins_path)
+      flash[:notice] = 'L\'administrateur a été créée avec succès.'
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = 'Il est impossible d\'enregistrer cet administrateur. Veuillez réessayer.'
       render :action => 'new'
     end
   end

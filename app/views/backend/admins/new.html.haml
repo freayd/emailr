@@ -1,0 +1,26 @@
+%h1 S'inscrire
+
+= error_messages_for :admin
+- form_for :admin, :url => admins_path do |f|
+
+  %p
+    = label_tag 'login'
+    %br
+    = f.text_field :login
+
+  %p
+    = label_tag 'email'
+    %br
+    = f.text_field :email
+
+  %p
+    = label_tag 'password', 'Mot de passe'
+    %br
+    = f.password_field :password
+
+  %p
+    = label_tag 'password_confirmation', 'Confirmation du mot de passe'
+    %br
+    = f.password_field :password_confirmation
+
+  %p= submit_tag 'S\'inscrire'

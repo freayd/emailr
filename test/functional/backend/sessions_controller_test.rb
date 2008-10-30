@@ -1,15 +1,10 @@
-require File.dirname(__FILE__) + '/../../test_helper'
+require 'test_helper'
 require 'backend/sessions_controller'
 
 # Re-raise errors caught by the controller.
 class Backend::SessionsController; def rescue_action(e) raise e end; end
 
 class Backend::SessionsControllerTest < ActionController::TestCase
-  # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
-  # Then, you can remove it from this and the units test.
-  include AuthenticatedTestHelper
-
-  fixtures :admins
 
   def test_should_login_and_redirect
     post :create, :login => 'quentin', :password => 'monkey'
@@ -42,7 +37,7 @@ class Backend::SessionsControllerTest < ActionController::TestCase
     puts @response.cookies["auth_token"]
     assert @response.cookies["auth_token"].blank?
   end
-  
+
   def test_should_delete_token_on_logout
     login_as :quentin
     get :destroy
@@ -71,11 +66,27 @@ class Backend::SessionsControllerTest < ActionController::TestCase
     assert !@controller.send(:logged_in?)
   end
 
+  # GET actions.
+  def test_should_show_new
+    get :new
+    assert_response :success
+    assert_template 'new'
+  end
+
+  # HTML rendering.
+  def test_should_show_login_form
+    get :new
+    assert_select 'form input[type=text]',     1
+    assert_select 'form input[type=password]', 1
+    assert_select 'form input[type=submit]',   1
+  end
+
+
   protected
     def auth_token(token)
       CGI::Cookie.new('name' => 'auth_token', 'value' => token)
     end
-    
+
     def cookie_for(admin)
       auth_token admins(admin).remember_token
     end

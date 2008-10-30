@@ -1,0 +1,14 @@
+%h1 S'identifier
+
+- form_tag backend_session_path do
+  %p
+    = label_tag 'login', 'Nom d\'utilisateur'
+    %br
+    = text_field_tag 'login', @login
+
+  %p
+    = label_tag 'password', 'Mot de passe'
+    %br
+    = password_field_tag 'password', nil
+
+  %p= submit_tag 'S\'identifier'

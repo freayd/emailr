@@ -1,0 +1,19 @@
+%h1 Liste des administrateurs
+
+%table
+  %tr
+    %th Login
+    %th Nom
+    %th Email
+    %th Créée le
+    %th Modifié le
+  - for admin in @admins
+    %tr
+      %td= h admin.login
+      %td= h admin.name
+      %td= h admin.email
+      %td= h admin.created_at
+      %td= h admin.updated_at
+
+= link_to 'Nouvel admnistrateur', admin_signup_path
+

@@ -1,12 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
   map.namespace :backend do |backend|
     backend.resource :session
-    backend.logout '/logout', :controller => 'sessions', :action => 'destroy'
-    backend.login  '/login',  :controller => 'sessions', :action => 'new'
+    backend.logout '/logout', :controller => 'sessions', :action => 'destroy', :name_prefix => 'admin_'
+    backend.login  '/login',  :controller => 'sessions', :action => 'new',     :name_prefix => 'admin_'
 
-    backend.resources :admins
-    backend.register '/register', :controller => 'admins', :action => 'create'
-    backend.signup   '/signup',   :controller => 'admins', :action => 'new'
+    backend.resources :admins, :name_prefix => nil
+    backend.register '/register', :controller => 'admins', :action => 'create', :name_prefix => 'admin_'
+    backend.signup   '/signup',   :controller => 'admins', :action => 'new',    :name_prefix => 'admin_'
+
+    backend.root :controller => 'admins'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
