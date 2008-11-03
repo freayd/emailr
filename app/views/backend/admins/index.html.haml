@@ -5,15 +5,13 @@
     %th Login
     %th Nom
     %th Email
-    %th Créée le
-    %th Modifié le
   - for admin in @admins
     %tr
-      %td= h admin.login
-      %td= h admin.name
-      %td= h admin.email
-      %td= h admin.created_at
-      %td= h admin.updated_at
+      %td&= admin.login
+      %td&= admin.name
+      %td&= admin.email
+      %td= link_to 'Détails', admin
+      %td= link_to 'Supprimer', admin, :method => :delete, |
+                   :confirm => "Etês vous sur de vouloir supprimer l'administrateur #{admin.login.inspect} ?" |
 
 = link_to 'Nouvel admnistrateur', admin_signup_path
-

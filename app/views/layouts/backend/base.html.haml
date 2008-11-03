@@ -1,0 +1,12 @@
+!!! XML
+!!!
+%html{ html_attrs('fr-fr') }
+  %head
+    %meta{ 'http-equiv' => 'Content-type', 'content' => 'text/html; charset=utf-8' }
+    %title Backend
+  %body
+    - unless flash[:error].blank?
+      .error&= flash[:error]
+    - unless flash[:notice].blank?
+      .notification&= flash[:notice]
+    = yield

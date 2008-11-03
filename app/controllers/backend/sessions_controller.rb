@@ -2,7 +2,6 @@
 class Backend::SessionsController < Backend::BaseController
   skip_before_filter :login_required, :only => [ :new, :create ]
 
-  # render new.rhtml
   def new
   end
 
@@ -34,7 +33,7 @@ class Backend::SessionsController < Backend::BaseController
   end
 
 protected
-  # Track failed login attempts
+  # Track failed login attempts.
   def note_failed_signin
     flash[:error] = "Impossible de vous identifier en tant que '#{params[:login]}'"
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"

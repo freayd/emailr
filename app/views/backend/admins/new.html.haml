@@ -1,7 +1,7 @@
 %h1 S'inscrire
 
 = error_messages_for :admin
-- form_for :admin, :url => admins_path do |f|
+- form_for :admin, :url => admin_register_path do |f|
 
   %p
     = label_tag 'login'
@@ -24,3 +24,5 @@
     = f.password_field :password_confirmation
 
   %p= submit_tag 'S\'inscrire'
+
+= link_to 'Retour à la liste des administrateurs', admins_path

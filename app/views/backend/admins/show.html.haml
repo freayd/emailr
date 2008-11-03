@@ -1,0 +1,17 @@
+%p
+  %b Login:
+  &= @admin.login
+%p
+  %b Nom:
+  &= @admin.name
+%p
+  %b Email:
+  &= @admin.email
+%p
+  %b Créée le:
+  &= @admin.created_at
+%p
+  %b Modifié le:
+  &= @admin.updated_at
+
+= link_to 'Retour à la liste des administrateurs', admins_path
