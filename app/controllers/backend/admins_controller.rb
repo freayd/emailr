@@ -13,7 +13,7 @@ class Backend::AdminsController < Backend::BaseController
   end
  
   def create
-    logout_keeping_session!
+    # logout_keeping_session!
     @admin = Admin.new(params[:admin])
     success = @admin && @admin.save
     if success && @admin.errors.empty?
@@ -21,7 +21,7 @@ class Backend::AdminsController < Backend::BaseController
       # protection if visitor resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
       # reset session
-      self.current_admin = @admin # !! now logged in
+      # self.current_admin = @admin # !! now logged in
       flash[:notice] = 'L\'administrateur a été créée avec succès.'
       redirect_back_or_default(admins_path)
     else

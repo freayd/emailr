@@ -99,6 +99,8 @@ class Backend::AdminsControllerTest < ActionController::TestCase
     assert ! assigns(:admin).new_record?
     assert_redirected_to admins_path
     assert_not_nil flash[:notice]
+    # Vérifie que le current_admin n'a pas changé.
+    assert_equal admins(:quentin), assigns(:current_admin)
   end
   def test_should_reject_empty_email_on_signup
     login_as :quentin
@@ -113,12 +115,27 @@ class Backend::AdminsControllerTest < ActionController::TestCase
   def test_should_destroy_admin
     login_as :quentin
     delete :destroy, :id => admins(:aaron)
+    assert_equal admins(:aaron), assigns(:admin)
     assert ! Admin.exists?(assigns(:admin))
     assert_redirected_to admins_path
     assert_not_nil flash[:notice]
+    # Vérifie que le current_admin n'a pas changé.
+    assert_equal admins(:quentin), assigns(:current_admin)
   end
+  def test_should_destroy_current_admin
+    login_as :quentin
+    delete :destroy, :id => admins(:quentin)
+    assert ! Admin.exists?(admins(:quentin))
+    assert_response :redirect
+   end
 
   # HTML rendering.
+  def test_should_show_admin_bar
+    login_as :quentin
+    get :index
+    assert_select "div#admin_bar a[href=\"#{admin_path(admins(:quentin))}\"]", admins(:quentin).login
+    assert_select 'div#admin_bar a', 'Déconnexion'
+  end
   def test_should_show_admins_table
     login_as :quentin
     get :index

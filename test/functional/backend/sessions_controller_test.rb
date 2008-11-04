@@ -100,11 +100,11 @@ class Backend::SessionsControllerTest < ActionController::TestCase
   end
 
   # DELETE actions.
-  def test_should_destroy_seession
+  def test_should_destroy_session
     login_as :quentin
     delete :destroy
     assert_equal false, assigns(:current_admin)
-    assert_redirected_to '/'
+    assert_redirected_to backend_root_path
     assert_not_nil flash[:notice]
   end
 

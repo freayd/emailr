@@ -29,7 +29,7 @@ class Backend::SessionsController < Backend::BaseController
   def destroy
     logout_killing_session!
     flash[:notice] = 'Vous venez d\'être délogué.'
-    redirect_back_or_default('/')
+    redirect_back_or_default(backend_root_path)
   end
 
 protected
