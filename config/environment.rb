@@ -65,3 +65,6 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
+
+# SASS compressed style takes up the minimum amount of space possible.
+Sass::Plugin.options[:style] = :compressed if Rails.env.production?

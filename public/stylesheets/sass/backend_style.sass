@@ -1,0 +1,59 @@
+# Blue ones.
+!main_color = #048
+!main_light_color    = !main_color + #555
+!main_lighter_color  = !main_color + #777
+!main_lightest_color = !main_color + #DDD
+
+!greeting_text_color = #555
+!greeting_link_color = !greeting_text_color - #333
+
+!notification_color = #F0F0FF
+!error_color        = #FFF0F0
+
+body
+  :background-color = !main_color
+  :margin 15px 25px
+#header
+  :color white
+  :font-weight bolder
+  :text-align center
+  :margin-bottom 0.5em
+#content
+  :background-color white
+  :border = 10px solid !main_light_color
+  :padding 10px 10px 20px 10px
+  :min-height 450px
+
+#greeting
+  :float right
+  :background-color = !main_lightest_color
+  :border = 8px solid !main_lighter_color
+  :padding 4px
+  :color = !greeting_text_color
+  :font-size smaller
+  div
+    :text-align center
+    a
+      :color = !greeting_link_color
+      &.nickname
+        :font-style italic
+        :text-decoration none
+        &:hover
+          :text-decoration underline
+
+.flash
+  :text-align center
+  :padding .5em
+  :margin-bottom 1em
+  :font-weight bold
+  :width 70%
+.notification
+  :border = 1px solid (!notification_color - #777)
+  :background-color = !notification_color
+.error
+  :border = 1px solid (!error_color - #777)
+  :background-color = !error_color
+
+.fieldWithErrors
+  :border 5px solid #f66
+  :display table
