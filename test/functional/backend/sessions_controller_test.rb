@@ -19,7 +19,7 @@ class Backend::SessionsControllerTest < ActionController::TestCase
   end
 
   def test_should_logout
-    login_as :quentin
+    login_as_admin :quentin
     get :destroy
     assert_nil session[:admin_id]
     assert_response :redirect
@@ -39,7 +39,7 @@ class Backend::SessionsControllerTest < ActionController::TestCase
   end
 
   def test_should_delete_token_on_logout
-    login_as :quentin
+    login_as_admin :quentin
     get :destroy
     assert @response.cookies["auth_token"].blank?
   end
@@ -101,7 +101,7 @@ class Backend::SessionsControllerTest < ActionController::TestCase
 
   # DELETE actions.
   def test_should_destroy_session
-    login_as :quentin
+    login_as_admin :quentin
     delete :destroy
     assert_equal false, assigns(:current_admin)
     assert_redirected_to backend_root_path

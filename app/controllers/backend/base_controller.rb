@@ -1,6 +1,6 @@
 # Contrôleur de base pour l'espace de nom 'backend'.
 class Backend::BaseController < ApplicationController
-  include AuthenticatedSystem
+  include AuthenticatedSystem::Backend
 
   before_filter :check_ip
   before_filter :login_required
