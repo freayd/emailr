@@ -1,0 +1,18 @@
+%h1 S'identifier
+
+- form_tag session_path do
+  %p
+    = label_tag 'login', 'Nom d\'utilisateur'
+    %br
+    = text_field_tag 'login', @login
+
+  %p
+    = label_tag 'password', 'Mot de passe'
+    %br
+    = password_field_tag 'password', nil
+
+  %p
+    = check_box_tag 'remember_me', '1', @remember_me
+    = label_tag 'remember_me', 'Se souvenir de moi sur cet ordinateur'
+
+  %p= submit_tag 'S\'identifier'

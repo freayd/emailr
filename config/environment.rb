@@ -64,6 +64,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+  config.active_record.observers = :account_observer
 end
 
 # SASS compressed style takes up the minimum amount of space possible.

@@ -15,12 +15,13 @@ class Hash
   alias :deep_update :deep_merge!
 
   # Rassemble les Hash contenus récursivement dans le Hash courant.
-  # Les valeurs sont attribuées derrière des clefs séparée par des points.
+  # Les nouvelles clefs sont séparées par des points en cas de récursivité.
   def gather!()
     each do |key, value|
       if value.is_a?(Hash)
+        value.gather!
         value.each do |sub_key, sub_value|
-          self["#{key}.#{sub_key}"] = sub_value.is_a?(Hash) ? sub_value.gather! : sub_value
+          self["#{key}.#{sub_key}"] = sub_value
         end
         delete(key)
       end

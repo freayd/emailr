@@ -1,4 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resource :session
+  map.login    '/login',    :controller => 'sessions', :action => 'new',     :conditions => { :method => :get    }
+  map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :conditions => { :method => :delete }
+
+  map.resources :accounts
+  map.signup   '/signup',                    :controller => 'accounts', :action => 'new',    :conditions => { :method => :get  }
+  map.register '/register',                  :controller => 'accounts', :action => 'create', :conditions => { :method => :post }
+  map.activate '/activate/:activation_code', :controller => 'accounts', :action => 'activate', :activation_code => nil
+
   map.namespace :backend do |backend|
     backend.resource :session
     backend.login  '/login',  :controller => 'sessions', :action => 'new',     :name_prefix => 'admin_', :conditions => { :method => :get    }
@@ -44,12 +53,13 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
+  map.root :controller => 'sessions', :conditions => { :method => :get }
 
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id.:format'
 end

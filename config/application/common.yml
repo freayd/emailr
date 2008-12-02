@@ -1,2 +1,9 @@
+application:
+  name: EmailR
+  host: emailr.fr
+email:
+  from: noreply@emailr.fr
+  subject:
+    prefix: '[EmailR] '
 backend:
   authorized_ips:
