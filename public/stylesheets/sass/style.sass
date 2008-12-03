@@ -1,0 +1,167 @@
+=reset-margin-padding
+  :margin 0
+  :padding 0
+=reset-width-height
+  :width 0
+  :height 0
+
+
+// Général
+
+html, body
+  +reset-margin-padding
+  :color #444
+  :font-family Arial
+
+.clearboth
+  :clear both
+  :visibility hidden
+  +reset-width-height
+
+a
+  :color #1E89DE
+
+h1, h2, h3, h4, h5
+  :margin 0.5em 0
+
+
+// Formulaires
+
+input, select, button, textarea
+  :padding 0.3em
+  :background-color #F4F4F5
+  :border 1px solid #ECEDEE
+  :-moz-border-radius 4px
+
+input
+  &.button, &[type="submit"]
+    :background-color #ECEDEE
+    :border 1px solid #BBB
+
+table.form
+  :width 100%
+
+  td
+    :padding 0.2em 0
+
+    &.label
+      :width 20%
+      :color #999
+
+    &.input input
+      :width 20em
+
+.errorExplanation,
+.flash.error,
+.flash.notification
+  :border 1px solid #FFF
+  :margin 0.5em 0
+  :padding 0.5em 1em
+
+  *
+    +reset-margin-padding
+
+.errorExplanation,
+.flash.error
+  :background #FFEDED
+  :border-color #FFA1A1
+  :color #9C7474
+
+.flash.notification
+  :background #FFFDEB
+  :border-color #FFF59D
+  :color #7F7518
+
+.errorExplanation
+  h2
+    :line-height 1em
+    :font-size 1.4em
+  ul
+    :padding 0.7em 0 0 1.5em
+
+.fieldWithErrors
+  input, select, textarea, button
+    :border 1px solid #FFA1A1
+    :background #FFEDED
+
+
+// Tête de page
+#header
+  :padding 0.5em 1em
+  :background-color #333
+  :border-bottom 1px solid #111
+  :color #888
+  :position relative
+
+  #user_area
+    :position absolute
+    :top 0.5em
+    :right 1em
+
+    label
+      :display none
+
+    input
+      :width 8em
+      :background-color #555
+      :border 1px solid #777
+      :color #BBB
+
+      &.button
+        :color #6190D2
+        :background-color #222
+        :border 1px solid #111
+
+
+// Menus
+
+#menu, #sub_menu
+  a
+    :color #8FA3B3
+    :text-decoration none
+
+    &:hover
+      :color #10436B
+      :text-decoration none
+
+#menu
+  :padding 0.5em 0
+  :background-color #F4F4F5
+  :border-bottom 1px solid #ECEDEE
+  :color #949697
+
+  ul
+    :margin 0
+    :padding 0
+
+    li
+      :display inline
+      :border-right 1px solid #C9CEDE
+      :padding 0 1em
+
+#sub_menu
+  :float left
+  :margin 1em 0 0 0
+  :padding 0 
+  :width 15em
+  :border-right 1px solid #ECEDEE
+  :color #949697
+
+  ul
+    :margin 0
+    :padding 0 1em
+    :list-style none
+
+    li
+      :margin 0 0 4px 0
+      :padding 0.5em
+      :background-color #FBFBFF
+
+      &:hover
+        :background-color #F8F8F9
+
+
+// Contenu principal
+
+#content
+  :padding 0 1em 0 16em

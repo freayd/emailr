@@ -1,0 +1,42 @@
+!!! XML
+!!! Strict
+%html{ html_attrs('fr-fr') }
+  %head
+    %meta{ 'http-equiv' => 'Content-type', 'content' => 'text/html; charset=utf-8' }
+    %title emailr
+    = stylesheet_link_tag 'style'
+  %body
+    #header
+      #logo= image_tag('emailr.png', :alt => 'emailr logo')
+      #user_area
+        - form_tag session_path do
+          = label_tag :login
+          = text_field_tag :login, 'login'
+          = label_tag :password
+          = text_field_tag :password, 'password'
+          = submit_tag 'Se connecter', :class => 'button'
+    #menu
+      %ul
+        %li= link_to 'menu 1', '#'
+        %li= link_to 'menu 2', '#'
+        %li= link_to 'menu 3', '#'
+        %li= link_to 'menu 4', '#'
+        %li= link_to 'menu 5', '#'
+        %li= link_to 'menu 6', '#'
+    #sub_menu
+      %ul
+        %li= link_to 'sous menu 1', '#'
+        %li= link_to 'sous menu 2', '#'
+        %li= link_to 'sous menu 3', '#'
+        %li= link_to 'sous menu 4', '#'
+        %li= link_to 'sous menu 5', '#'
+        %li= link_to 'sous menu 6', '#'
+    #content
+      - unless flash[:error].blank?
+        .flash.error&= flash[:error]
+      - unless flash[:notice].blank?
+        .flash.notification&= flash[:notice]
+      = yield
+    .clearboth
+    #footer
+      %p Footer
