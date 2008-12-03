@@ -7,17 +7,23 @@
     = stylesheet_link_tag 'style'
   %body
     #header
-      #logo= image_tag('emailr.png', :alt => 'emailr logo')
+      #logo= link_to(image_tag('emailr.png', :alt => 'emailr logo', :title => 'emailr logo'), root_url)
       #user_area
-        - form_tag session_path do
-          = label_tag :login
-          = text_field_tag :login, 'login'
-          = label_tag :password
-          = text_field_tag :password, 'password'
-          = submit_tag 'Se connecter', :class => 'button'
+        - if logged_in?
+          Identifié en tant que:
+          = link_to_current_account
+          |
+          = link_to 'Déconnexion', logout_path, :method => :delete
+        - else
+          - form_tag session_path do
+            = label_tag :login
+            = text_field_tag :login, 'login'
+            = label_tag :password
+            = password_field_tag :password, 'password'
+            = submit_tag 'Se connecter', :class => 'button'
     #menu
       %ul
-        %li= link_to 'menu 1', '#'
+        %li= link_to 'Accueil', root_path
         %li= link_to 'menu 2', '#'
         %li= link_to 'menu 3', '#'
         %li= link_to 'menu 4', '#'
