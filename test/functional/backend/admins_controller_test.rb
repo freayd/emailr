@@ -133,7 +133,7 @@ class Backend::AdminsControllerTest < ActionController::TestCase
   def test_should_show_admin_greeting
     login_as_admin :quentin
     get :index
-    assert_select "div#greeting a[href=\"#{admin_path(admins(:quentin))}\"]", admins(:quentin).login
+    assert_select 'div#greeting a[href=?]', admin_path(admins(:quentin)), admins(:quentin).login
     assert_select 'div#greeting a', 'Déconnexion'
   end
   def test_should_not_show_admin_greeting
@@ -146,14 +146,14 @@ class Backend::AdminsControllerTest < ActionController::TestCase
     assert_select 'table tr', 4 # header + 3 admins
     assert_select 'table tr td', 'quentin' # login
     assert_select 'table tr td', 'quentin@example.com' # email
-    assert_select "a[href=\"#{admin_signup_path}\"]"
+    assert_select 'a[href=?]', admin_signup_path
   end
   def test_should_show_admin_details
     login_as_admin :quentin
     get :show, :id => admins(:aaron)
     assert_select 'p', /aaron/
     assert_select 'p', /aaron@example\.com/
-    assert_select "a[href=\"#{admins_path}\"]"
+    assert_select 'a[href=?]', admins_path
   end
   def test_should_show_create_form
     login_as_admin :quentin
@@ -163,7 +163,7 @@ class Backend::AdminsControllerTest < ActionController::TestCase
     assert_select 'form input[type=submit]',   1
     assert_nil assigns(:admin).password
     assert_nil assigns(:admin).password_confirmation
-    assert_select "a[href=\"#{admins_path}\"]"
+    assert_select 'a[href=?]', admins_path
   end
 
 

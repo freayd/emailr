@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  skip_before_filter :login_required, :only => [ :new, :create, :activate ]
+
   def new
     @account = Account.new
   end
