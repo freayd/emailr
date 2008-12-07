@@ -1,6 +1,4 @@
 class AccountMailer < ActionMailer::Base
-  ActionController::UrlWriter.default_url_options[:host] = ApplicationConfig['application.host']
-
   def signup_notification(account)
     setup_email(account)
     @subject    += 'Please activate your new account'

@@ -1,0 +1,76 @@
+%h1 S'inscrire
+
+= error_messages_for :customer, :account, :object_name => 'account'
+- form_for :account, :url => register_path do |f|
+
+  %div
+    Informations sur votre société :
+    - fields_for @customer do |customer_fields|
+      %p
+        = label_tag 'company', 'Nom'
+        %br
+        = customer_fields.text_field :company
+
+      %p
+        = label_tag 'address', 'Adresse'
+        %br
+        = customer_fields.text_area :address, :rows => 3
+
+      %p
+        = label_tag 'city', 'Ville'
+        %br
+        = customer_fields.text_field :city
+
+      %p
+        = label_tag 'postal_code', 'Code postal'
+        %br
+        = customer_fields.text_field :postal_code
+
+      %p
+        = label_tag 'country', 'Pays'
+        %br
+        = customer_fields.text_field :country
+
+      %p
+        = label_tag 'phone_number', 'Numéro de téléphone'
+        %br
+        = customer_fields.text_field :phone_number
+
+      %p
+        - duns_help_url = 'http://en.wikipedia.org/wiki/Data_Universal_Numbering_System'
+        - duns_acronym  = 'Data Universal Numbering System'
+        = label_tag 'duns', link_to(content_tag(:acronym, 'DUNS', :title => duns_acronym), duns_help_url)
+        %br
+        = customer_fields.text_field :duns
+
+      %p
+        - siret_help_url = 'http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%E2%80%99identification_du_r%C3%A9pertoire_des_%C3%A9tablissements'
+        - siret_acronym  = 'Système d’identification du répertoire des établissements'
+        = label_tag 'siret', link_to(content_tag(:acronym, 'SIRET', :title => siret_acronym), siret_help_url) + ' (uniquement pour les entreprises françaises)'
+        %br
+        = customer_fields.text_field :siret
+
+  %div
+    Compte principal :
+    - fields_for @account do |account_fields|
+      %p
+        = label_tag 'login'
+        %br
+        = account_fields.text_field :login
+
+      %p
+        = label_tag 'email'
+        %br
+        = account_fields.text_field :email
+
+      %p
+        = label_tag 'password', 'Mot de passe'
+        %br
+        = account_fields.password_field :password
+
+      %p
+        = label_tag 'password_confirmation', 'Confirmation du mot de passe'
+        %br
+        = account_fields.password_field :password_confirmation
+
+  %p= submit_tag 'S\'inscrire'

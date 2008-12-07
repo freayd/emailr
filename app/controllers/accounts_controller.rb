@@ -2,18 +2,22 @@ class AccountsController < ApplicationController
   skip_before_filter :login_required, :only => [ :new, :create, :activate ]
 
   def new
-    @account = Account.new
+    @customer = Customer.new
+    @account = @customer.accounts.new
+    @account.password = @account.password_confirmation = nil
   end
  
   def create
     logout_keeping_session!
-    @account = Account.new(params[:account])
-    success = @account && @account.save
-    if success && @account.errors.empty?
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
-      redirect_back_or_default('/')
+    @customer = Customer.new(params[:customer])
+    @account = @customer.accounts.build(params[:account])
+    success = @customer && @account && @customer.save
+    if success && @customer.errors.empty? && @account.errors.empty?
+      flash[:notice] = 'Merci de vous être enregistré. Nous venons de vous envoyer une email avec votre code d\'activation du compte principal.'
+      redirect_back_or_default(root_path)
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = 'Nous ne pouvons enregistrer ce compte. Veuillez corriger les informations. ' +
+                       'En cas de problème, veuillez contactez l\'administrateur du site.'
       render :action => 'new'
     end
   end
@@ -24,14 +28,14 @@ class AccountsController < ApplicationController
     case
     when (!params[:activation_code].blank?) && account && !account.active?
       account.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to '/login'
+      flash[:notice] = 'Votre compte vient d\'être activé. Veuillez vous connecter afin de continuer.'
+      redirect_to login_path
     when params[:activation_code].blank?
-      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
-      redirect_back_or_default('/')
+      flash[:error] = 'Le code d\'activation est manquant. Veuillez suivre le lien qui vous a été envoyé par email.'
+      redirect_back_or_default(root_path)
     else 
-      flash[:error]  = "We couldn't find a account with that activation code -- check your email? Or maybe you've already activated -- try signing in."
-      redirect_back_or_default('/')
+      flash[:error]  = 'Ce code d\'activation est erroné. Avez vous déjà activé votre vompte ? Essayez de vous connecter.'
+      redirect_back_or_default(root_path)
     end
   end
 end

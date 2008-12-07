@@ -18,3 +18,8 @@ class << ::ApplicationConfig = yaml_data.gather!
   alias :defined? :has_key?
   alias :value    :fetch
 end
+
+
+# Configurations.
+ActionMailer::Base.default_url_options[:host] = ApplicationConfig['application.host']
+
