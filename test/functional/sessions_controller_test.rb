@@ -7,19 +7,19 @@ class SessionsController; def rescue_action(e) raise e end; end
 class SessionsControllerTest < ActionController::TestCase
 
   def test_should_login_and_redirect
-    post :create, :login => 'quentin', :password => 'monkey'
+    post :create, :login => 'pierre', :password => 'monkey'
     assert session[:account_id]
     assert_response :redirect
   end
 
   def test_should_fail_login_and_not_redirect
-    post :create, :login => 'quentin', :password => 'bad password'
+    post :create, :login => 'pierre', :password => 'bad password'
     assert_nil session[:account_id]
     assert_response :success
   end
 
   def test_should_logout
-    login_as :quentin
+    login_as :pierre
     get :destroy
     assert_nil session[:account_id]
     assert_response :redirect
@@ -27,40 +27,40 @@ class SessionsControllerTest < ActionController::TestCase
 
   def test_should_remember_me
     @request.cookies["auth_token"] = nil
-    post :create, :login => 'quentin', :password => 'monkey', :remember_me => "1"
+    post :create, :login => 'pierre', :password => 'monkey', :remember_me => "1"
     assert_not_nil @response.cookies["auth_token"]
   end
 
   def test_should_not_remember_me
     @request.cookies["auth_token"] = nil
-    post :create, :login => 'quentin', :password => 'monkey', :remember_me => "0"
+    post :create, :login => 'pierre', :password => 'monkey', :remember_me => "0"
     puts @response.cookies["auth_token"]
     assert @response.cookies["auth_token"].blank?
   end
   
   def test_should_delete_token_on_logout
-    login_as :quentin
+    login_as :pierre
     get :destroy
     assert @response.cookies["auth_token"].blank?
   end
 
   def test_should_login_with_cookie
-    accounts(:quentin).remember_me
-    @request.cookies["auth_token"] = cookie_for(:quentin)
+    accounts(:pierre).remember_me
+    @request.cookies["auth_token"] = cookie_for(:pierre)
     get :new
     assert @controller.send(:logged_in?)
   end
 
   def test_should_fail_expired_cookie_login
-    accounts(:quentin).remember_me
-    accounts(:quentin).update_attribute :remember_token_expires_at, 5.minutes.ago
-    @request.cookies["auth_token"] = cookie_for(:quentin)
+    accounts(:pierre).remember_me
+    accounts(:pierre).update_attribute :remember_token_expires_at, 5.minutes.ago
+    @request.cookies["auth_token"] = cookie_for(:pierre)
     get :new
     assert !@controller.send(:logged_in?)
   end
 
   def test_should_fail_cookie_login
-    accounts(:quentin).remember_me
+    accounts(:pierre).remember_me
     @request.cookies["auth_token"] = auth_token('invalid_auth_token')
     get :new
     assert !@controller.send(:logged_in?)
@@ -101,7 +101,7 @@ class SessionsControllerTest < ActionController::TestCase
 
   # DELETE actions.
   def test_should_destroy_session
-    login_as :quentin
+    login_as :pierre
     delete :destroy
     assert_equal false, assigns(:current_account)
     assert_redirected_to root_path
@@ -119,7 +119,7 @@ class SessionsControllerTest < ActionController::TestCase
 
   protected
     def create_session(options = {})
-      post :create, { :login => 'quentin', :password => 'monkey' }.merge(options)
+      post :create, { :login => 'pierre', :password => 'monkey' }.merge(options)
     end
     def auth_token(token)
       CGI::Cookie.new('name' => 'auth_token', 'value' => token)

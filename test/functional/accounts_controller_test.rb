@@ -54,11 +54,11 @@ class AccountsControllerTest < ActionController::TestCase
   end
 
   def test_should_activate_user
-    assert_nil Account.authenticate('aaron', 'test')
-    get :activate, :activation_code => accounts(:aaron).activation_code
+    assert_nil Account.authenticate('paul', 'test')
+    get :activate, :activation_code => accounts(:paul).activation_code
     assert_redirected_to '/session/new'
     assert_not_nil flash[:notice]
-    assert_equal accounts(:aaron), Account.authenticate('aaron', 'monkey')
+    assert_equal accounts(:paul), Account.authenticate('paul', 'monkey')
   end
   
   def test_should_not_activate_user_without_key

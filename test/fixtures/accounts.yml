@@ -1,8 +1,8 @@
-
-quentin:
+pierre:
   id:                        1
-  login:                     quentin
-  email:                     quentin@example.com
+  customer:                  debian
+  login:                     pierre
+  email:                     pierre@debian.org
   salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
   crypted_password:          dec1448d7238a13ce8116bc6375c6309c0c95686 # 'monkey'
   created_at:                <%= 5.days.ago.to_s :db  %>
@@ -10,11 +10,12 @@ quentin:
   remember_token:            77de68daecd823babbb58edb1c8e14d7106e83bb
   activation_code:           
   activated_at:              <%= 5.days.ago.to_s :db %>
-      
-aaron:
+
+paul:
   id:                        2
-  login:                     aaron
-  email:                     aaron@example.com
+  customer:                  debian
+  login:                     paul
+  email:                     paul@debian.org
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          2a1eeb855d1ddd1a2e9e679b9f2f8d08e877cd20 # 'monkey'
   created_at:                <%= 1.days.ago.to_s :db %>
@@ -23,9 +24,22 @@ aaron:
   activation_code:           1b6453892473a467d07372d45eb05abc2031647a
   activated_at:              
 
+jean:
+  id:                        3
+  customer:                  ubuntu
+  login:                     jean
+  email:                     jean@ubuntu.com
+  salt:                      77de68daecd823babbb58edb1c8e14d7106e83bb # SHA1('3')
+  crypted_password:          2a1eeb855d1ddd1a2e9e679b9f2f8d08e877cd20 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db %>
+  remember_token_expires_at: 
+  remember_token:            
+  activation_code:           
+  activated_at:              <%= 4.days.ago.to_s :db %>
+
 
 old_password_holder:
-  id:                        3
+  id:                        4
   login:                     old_password_holder
   email:                     salty_dog@example.com
   salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
@@ -33,5 +47,3 @@ old_password_holder:
   created_at:                <%= 1.days.ago.to_s :db %>
   activation_code:           
   activated_at:              <%= 5.days.ago.to_s :db %>
-
-

@@ -15,21 +15,18 @@ class AdminTest < ActiveSupport::TestCase
       assert u.errors.on(:login)
     end
   end
-
   def test_should_require_password
     assert_no_difference 'Admin.count' do
       u = create_admin(:password => nil)
       assert u.errors.on(:password)
     end
   end
-
   def test_should_require_password_confirmation
     assert_no_difference 'Admin.count' do
       u = create_admin(:password_confirmation => nil)
       assert u.errors.on(:password_confirmation)
     end
   end
-
   def test_should_require_email
     assert_no_difference 'Admin.count' do
       u = create_admin(:email => nil)
@@ -41,7 +38,6 @@ class AdminTest < ActiveSupport::TestCase
     admins(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     assert_equal admins(:quentin), Admin.authenticate('quentin', 'new password')
   end
-
   def test_should_not_rehash_password
     admins(:quentin).update_attributes(:login => 'quentin2')
     assert_equal admins(:quentin), Admin.authenticate('quentin2', 'monkey')
@@ -50,13 +46,11 @@ class AdminTest < ActiveSupport::TestCase
   def test_should_authenticate_admin
     assert_equal admins(:quentin), Admin.authenticate('quentin', 'monkey')
   end
-
   def test_should_set_remember_token
     admins(:quentin).remember_me
     assert_not_nil admins(:quentin).remember_token
     assert_not_nil admins(:quentin).remember_token_expires_at
   end
-
   def test_should_unset_remember_token
     admins(:quentin).remember_me
     assert_not_nil admins(:quentin).remember_token
@@ -72,7 +66,6 @@ class AdminTest < ActiveSupport::TestCase
     assert_not_nil admins(:quentin).remember_token_expires_at
     assert admins(:quentin).remember_token_expires_at.between?(before, after)
   end
-
   def test_should_remember_me_until_one_week
     time = 1.week.from_now.utc
     admins(:quentin).remember_me_until time
@@ -80,7 +73,6 @@ class AdminTest < ActiveSupport::TestCase
     assert_not_nil admins(:quentin).remember_token_expires_at
     assert_equal admins(:quentin).remember_token_expires_at, time
   end
-
   def test_should_remember_me_default_two_weeks
     before = 2.weeks.from_now.utc
     admins(:quentin).remember_me

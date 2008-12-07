@@ -1,0 +1,15 @@
+debian:
+  company:      Software in the Public Interest, Inc.
+  address:      P.O. Box 501248
+  city:         Indianapolis
+  postal_code:  46250-6248
+  country:      United States
+  phone_number: +44.1223723614
+
+ubuntu:
+  company:      Canonical, Ltd.
+  address:      One Circular Road
+  city:         Douglas
+  postal_code:  IM1
+  country:      Isle of Man
+  phone_number: +44.1624643643
