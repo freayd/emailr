@@ -3,8 +3,8 @@
 = error_messages_for :customer, :account, :object_name => 'account'
 - form_for :account, :url => register_path do |f|
 
-  %div
-    Informations sur votre société :
+  %fieldset
+    %legend Informations sur votre société
     - fields_for @customer do |customer_fields|
       %p
         = label_tag 'company', 'Nom'
@@ -50,8 +50,8 @@
         %br
         = customer_fields.text_field :siret
 
-  %div
-    Compte principal :
+  %fieldset
+    %legend Compte principal
     - fields_for @account do |account_fields|
       %p
         = label_tag 'login'

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081205092635) do
+ActiveRecord::Schema.define(:version => 20081208115837) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -54,5 +54,24 @@ ActiveRecord::Schema.define(:version => 20081205092635) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "subscribers", :force => true do |t|
+    t.integer  "customer_id"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.date     "birth"
+    t.integer  "age"
+    t.text     "address"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "state"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscribers", ["customer_id", "email"], :name => "index_subscribers_on_customer_id_and_email", :unique => true
 
 end
