@@ -1,4 +1,4 @@
-# This controller handles the login/logout function of the site.  
+# This controller handles the login/logout function of the backend.
 class Backend::SessionsController < Backend::BaseController
   skip_before_filter :login_required, :only => [ :new, :create ]
 
@@ -28,8 +28,8 @@ class Backend::SessionsController < Backend::BaseController
 
   def destroy
     logout_killing_session!
-    flash[:notice] = 'Vous venez d\'être délogué.'
-    redirect_back_or_default(backend_root_path)
+    # flash[:notice] = 'Vous venez d\'être délogué.'
+    redirect_back_or_default(root_path)
   end
 
 protected

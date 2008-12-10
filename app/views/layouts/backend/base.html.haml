@@ -1,21 +1,22 @@
 !!! XML
-!!!
+!!! Strict
 %html{ html_attrs('fr-fr') }
   %head
     %meta{ 'http-equiv' => 'Content-type', 'content' => 'text/html; charset=utf-8' }
-    %title Backend
+    %title emailr - Backend
     = stylesheet_link_tag 'backend_style'
   %body
-    #header Administration
+    #header
+      #logo= link_to(image_tag('emailr.png', :alt => 'emailr logo', :title => 'emailr logo'), backend_root_path)
+      #user_area
+        - if logged_in?
+          Identifié en tant que:
+          = link_to_current_admin
+          |
+          = link_to 'Déconnexion', admin_logout_path, :method => :delete
     #content
-      - if logged_in?
-        #greeting
-          %div
-            Identifié en tant que:
-            = link_to_current_admin
-          %div= link_to 'Déconnexion', admin_logout_path, :method => :delete
       - unless flash[:error].blank?
-        .flash.error&= flash[:error]
+        .flash.error= simple_format(h(flash[:error]))
       - unless flash[:notice].blank?
-        .flash.notification&= flash[:notice]
+        .flash.notification= simple_format(h(flash[:notice]))
       = yield

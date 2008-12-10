@@ -130,15 +130,15 @@ class Backend::AdminsControllerTest < ActionController::TestCase
    end
 
   # HTML rendering.
-  def test_should_show_admin_greeting
+  def test_should_show_admin_area
     login_as_admin :quentin
     get :index
-    assert_select 'div#greeting a[href=?]', admin_path(admins(:quentin)), admins(:quentin).login
-    assert_select 'div#greeting a', 'Déconnexion'
+    assert_select 'div#user_area a[href=?]', admin_path(admins(:quentin)), admins(:quentin).login
+    assert_select 'div#user_area a', 'Déconnexion'
   end
-  def test_should_not_show_admin_greeting
+  def test_should_not_show_admin_area
     get :index
-    assert_select 'div#greeting', false
+    assert_select 'div#user_area', false
   end
   def test_should_show_admins_table
     login_as_admin :quentin
