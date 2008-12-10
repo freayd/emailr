@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register',                  :controller => 'accounts', :action => 'create', :conditions => { :method => :post }
   map.activate '/activate/:activation_code', :controller => 'accounts', :action => 'activate', :activation_code => nil
 
-  map.resources :subscribers, :collection => { :import => [ :get, :post ] }
+  map.resources :subscribers, :only => :index, :collection => { :import => [ :get, :post ] }
 
   map.namespace :backend do |backend|
     backend.resource :session, :only => [ :new, :create, :destroy ]

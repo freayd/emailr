@@ -4,6 +4,8 @@
 =reset-width-height
   :width 0
   :height 0
+=round-borders
+  :-moz-border-radius 4px
 
 
 // Général
@@ -39,12 +41,17 @@ input, select, button, textarea
   :padding 0.3em
   :background-color #F4F4F5
   :border 1px solid #ECEDEE
-  :-moz-border-radius 4px
+  +round-borders
 
 input
   &.button, &[type="submit"]
     :background-color #ECEDEE
     :border 1px solid #BBB
+
+fieldset
+  +round-borders
+  & legend
+    :font-weight bold
 
 table.form
   :width 100%

@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20081210140213) do
 
   create_table "subscribers", :force => true do |t|
     t.integer  "customer_id"
-    t.string   "identifier"
+    t.integer  "identifier"
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"

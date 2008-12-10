@@ -2,7 +2,7 @@ class CreateSubscribers < ActiveRecord::Migration
   def self.up
     create_table :subscribers do |t|
       t.references :customer, :null_allowed => :false
-      t.string  :identifier
+      t.integer :identifier
       t.string  :email
       t.string  :first_name
       t.string  :last_name

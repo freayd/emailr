@@ -1,0 +1,11 @@
+%tr{ :class => cycle('even', 'odd') }
+  %td&= subscriber.identifier
+  %td&= subscriber.email
+  %td&= subscriber.first_name
+  %td&= subscriber.last_name
+  %td&= subscriber.male? ? 'homme' : 'femme'        if subscriber.gender?
+  %td&= subscriber.birth.to_formatted_s('%d-%m-%Y') if subscriber.birth?
+  %td&= subscriber.age
+  %td&= subscriber.city
+  %td&= subscriber.state
+  %td&= subscriber.country
