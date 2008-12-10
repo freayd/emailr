@@ -2,6 +2,7 @@ class CreateSubscribers < ActiveRecord::Migration
   def self.up
     create_table :subscribers do |t|
       t.references :customer, :null_allowed => :false
+      t.string  :identifier
       t.string  :email
       t.string  :first_name
       t.string  :last_name
@@ -16,7 +17,8 @@ class CreateSubscribers < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index(:subscribers, [:customer_id, :email], :unique => true)
+    add_index(:subscribers, [:customer_id, :identifier], :unique => true)
+    add_index(:subscribers, [:customer_id, :email     ], :unique => true)
   end
 
   def self.down

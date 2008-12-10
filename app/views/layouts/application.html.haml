@@ -23,25 +23,22 @@
             = submit_tag 'Se connecter', :class => 'button'
     #menu
       %ul
-        %li= link_to 'Accueil',     root_path
-        %li= link_to 'S\'inscrire', signup_path
-        %li= link_to 'menu 3', '#'
+        %li= link_to 'Accueil',                root_path
+        %li= link_to 'S\'inscrire',            signup_path
+        %li= link_to 'Gestion de mes abonnés', subscribers_path
         %li= link_to 'menu 4', '#'
         %li= link_to 'menu 5', '#'
         %li= link_to 'menu 6', '#'
-    #sub_menu
-      %ul
-        %li= link_to 'sous menu 1', '#'
-        %li= link_to 'sous menu 2', '#'
-        %li= link_to 'sous menu 3', '#'
-        %li= link_to 'sous menu 4', '#'
-        %li= link_to 'sous menu 5', '#'
-        %li= link_to 'sous menu 6', '#'
+    - if sub_menu
+      #sub_menu
+        %ul
+          - sub_menu.each do |sub|
+            %li= link_to sub[:name], send("#{sub[:path]}_path")
     #content
       - unless flash[:error].blank?
-        .flash.error&= flash[:error]
+        .flash.error= simple_format(h(flash[:error]))
       - unless flash[:notice].blank?
-        .flash.notification&= flash[:notice]
+        .flash.notification= simple_format(h(flash[:notice]))
       = yield
     .clearboth
     #footer

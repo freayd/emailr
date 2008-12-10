@@ -1,19 +1,21 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resource :session
+  map.resource :session, :only => [ :new, :create, :destroy ]
   map.login    '/login',    :controller => 'sessions', :action => 'new',     :conditions => { :method => :get    }
   map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :conditions => { :method => :delete }
 
-  map.resources :accounts
+  map.resources :accounts, :only => [ :new, :show, :create ]
   map.signup   '/signup',                    :controller => 'accounts', :action => 'new',    :conditions => { :method => :get  }
   map.register '/register',                  :controller => 'accounts', :action => 'create', :conditions => { :method => :post }
   map.activate '/activate/:activation_code', :controller => 'accounts', :action => 'activate', :activation_code => nil
 
+  map.resources :subscribers, :collection => { :import => [ :get, :post ] }
+
   map.namespace :backend do |backend|
-    backend.resource :session
+    backend.resource :session, :only => [ :new, :create, :destroy ]
     backend.login  '/login',  :controller => 'sessions', :action => 'new',     :name_prefix => 'admin_', :conditions => { :method => :get    }
     backend.logout '/logout', :controller => 'sessions', :action => 'destroy', :name_prefix => 'admin_', :conditions => { :method => :delete }
 
-    backend.resources :admins, :name_prefix => nil
+    backend.resources :admins, :name_prefix => nil, :except => [ :edit, :update ]
     backend.signup   '/signup',   :controller => 'admins', :action => 'new',    :name_prefix => 'admin_', :conditions => { :method => :get  }
     backend.register '/register', :controller => 'admins', :action => 'create', :name_prefix => 'admin_', :conditions => { :method => :post }
 

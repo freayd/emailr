@@ -56,7 +56,7 @@ class AccountsControllerTest < ActionController::TestCase
   def test_should_activate_user
     assert_nil Account.authenticate('paul', 'test')
     get :activate, :activation_code => accounts(:paul).activation_code
-    assert_redirected_to '/session/new'
+    assert_redirected_to login_path
     assert_not_nil flash[:notice]
     assert_equal accounts(:paul), Account.authenticate('paul', 'monkey')
   end

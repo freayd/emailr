@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => 'fe979f9d79f2e838680c8941c4f9baca'
+  protect_from_forgery :secret => 'fe979f9d79f2e838680c8941c4f9baca'
 
   # See ActionController::Base for details
   # Uncomment this to filter the contents of submitted sensitive data parameters
@@ -16,4 +16,16 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
   before_filter :login_required
+
+  helper_method :sub_menu
+
+  protected
+    @@sub_menu = Array.new
+    def sub_menu
+      @@sub_menu
+    end
+
+    def current_customer
+      current_account.customer
+    end
 end

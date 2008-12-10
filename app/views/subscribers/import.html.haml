@@ -1,0 +1,11 @@
+%h1 Importation de mes abonnés
+- form_tag import_subscribers_path, :multipart => true do
+  %p
+    = label_tag 'file', 'Fichier CSV'
+    %br
+    = file_field_tag 'file'
+  %p
+    = label_tag 'separator', 'Séparateur'
+    %br
+    = text_field_tag 'separator', ';'
+  %p= submit_tag 'Importer les abonnés'
