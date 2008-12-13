@@ -1,0 +1,5 @@
+%tr{ :class => cycle('even', 'odd') }
+  %td&= newsletter.name
+  %td= newsletter.next_deliveries.collect { |d| d.to_formatted_s('%d-%m-%Y') }.join(tag('br'))
+  %td
+  %td

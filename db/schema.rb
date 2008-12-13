@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081210140213) do
+ActiveRecord::Schema.define(:version => 20081212120256) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -51,6 +51,20 @@ ActiveRecord::Schema.define(:version => 20081210140213) do
     t.string   "phone_number"
     t.string   "duns"
     t.string   "siret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "newsletters", :force => true do |t|
+    t.integer  "customer_id"
+    t.string   "name"
+    t.text     "description"
+    t.date     "start_at"
+    t.date     "stop_at"
+    t.string   "frequency_unit"
+    t.integer  "frequency"
+    t.text     "email_title"
+    t.text     "email_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  customer:       debian
+  name:           MyString
+  description:    MyText
+  start_at:       2008-12-12
+  stop_at:        2008-12-12
+  frequency_unit: MyString
+  frequency:      1
+  email_title:    MyText
+  email_content:  MyText
+
+two:
+  customer:       debian
+  name:           MyString
+  description:    MyText
+  start_at:       2008-12-12
+  stop_at:        2008-12-12
+  frequency_unit: MyString
+  frequency:      1
+  email_title:    MyText
+  email_content:  MyText

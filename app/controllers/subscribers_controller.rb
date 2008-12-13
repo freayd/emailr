@@ -1,19 +1,16 @@
 class SubscribersController < ApplicationController
-  @@sub_menu << { :name => 'Liste',       :path =>:subscribers        } \
-             << { :name => 'Importation', :path =>:import_subscribers }
+  @@sub_menu << { :name => 'Liste',       :path => :subscribers        } \
+             << { :name => 'Importation', :path => :import_subscribers }
 
 
   def index
-    @count = current_customer.subscribers.size
+    @count       = current_customer.subscribers.size
     @subscribers = current_customer.subscribers.find(:all, :order => 'identifier ASC')
   end
 
   def import
     if request.get?
-      auth_attr = Subscriber.authorized_attr_on_import.to_sentence(:connector => 'et', :skip_last_comma => true)
-      flash[:notice] = "Les colonnes doivent être spécifiées en en-tête.\n" \
-                       "Liste des colonnes possibles : #{auth_attr}.\n" \
-                       "La colonne 'identifier' est obligatoire. Un email ne peut être dupliqué."
+      @auth_attr = Subscriber.authorized_attr_on_import
       return
     end
 

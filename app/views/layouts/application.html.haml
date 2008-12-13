@@ -23,10 +23,10 @@
             = submit_tag 'Se connecter', :class => 'button'
     #menu
       %ul
-        %li= link_to 'Accueil',                root_path
-        %li= link_to 'S\'inscrire',            signup_path
-        %li= link_to 'Gestion de mes abonnés', subscribers_path
-        %li= link_to 'menu 4', '#'
+        %li= link_to 'Accueil',     root_path
+        %li= link_to 'S\'inscrire', signup_path
+        %li= link_to 'Abonnés',     subscribers_path
+        %li= link_to 'Mailing',     newsletters_path
         %li= link_to 'menu 5', '#'
         %li= link_to 'menu 6', '#'
     - if sub_menu

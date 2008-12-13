@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'accounts', :action => 'activate', :activation_code => nil
 
   map.resources :subscribers, :only => :index, :collection => { :import => [ :get, :post ] }
+  map.resources :newsletters, :only => [ :index, :new, :create ]
 
   map.namespace :backend do |backend|
     backend.resource :session, :only => [ :new, :create, :destroy ]

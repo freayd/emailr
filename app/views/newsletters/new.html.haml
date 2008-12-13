@@ -1,0 +1,50 @@
+%h1 Nouvelle newsletter
+
+= error_messages_for :newsletter
+- form_for @newsletter do |f|
+
+  %fieldset
+    %legend Informations générales
+    %p
+      = label_tag 'name', 'Nom'
+      %br
+      = f.text_field :name
+    %p
+      = label_tag 'description', 'Description'
+      %br
+      = f.text_area :description, :rows => 3
+
+  %fieldset
+    %legend Dates et périodicité des envois
+    - date_select_options = { :order => [ :day, :month, :year ], :include_blank => true }
+    %table
+      %tr
+        %td= label_tag 'start_at', 'Début des envois :'
+        %td= f.date_select :start_at, date_select_options
+      %tr
+        %td= label_tag 'stop_at', 'Fin des envois :'
+        %td= f.date_select :stop_at, date_select_options
+      %tr
+        %td= label_tag 'frequency', 'Fréquence :'
+        %td
+          tou(te)s les
+          = f.text_field :frequency, :class => 'right', :size => 3
+          = f.select :frequency_unit, [ ['jour(s)', 'day'], ['semaine(s)', 'week'], ['mois', 'month'] ]
+
+  %fieldset
+    %legend Modèle de l'email
+    %p.help
+      Les chaînes de caractère suivantes sont considérées comme des variables dans le titre et corps de l'email:
+      %ul
+        - @var_definitions.each do |var, definition|
+          %li= "%#{content_tag(:b, h(var))}% : #{h(definition)}"
+    %p
+      = label_tag 'email_title', 'Titre'
+      %br
+      = f.text_field :email_title, :size => 50
+    %p
+      = label_tag 'email_content', 'Contenu'
+      %br
+      = f.text_area :email_content, :cols => 100, :rows => 60
+
+  %p= submit_tag 'Sauvegarder pour l\'envoi'
