@@ -1,16 +1,17 @@
 %h1
   Mes abonnés
   %small= "- #{@count}"
-%table
-  %tr
-    %th Identifier
-    %th Email
-    %th Prénom
-    %th Nom
-    %th Sexe
-    %th Date de naissance
-    %th Age
-    %th Ville
-    %th Etat
-    %th Pays
-  = render :partial => 'subscriber', :collection => @subscribers
+- unless @subscribers.empty?
+  %table
+    %tr
+      %th Identifier
+      %th Email
+      %th Prénom
+      %th Nom
+      %th Sexe
+      %th Date de naissance
+      %th Age
+      %th Ville
+      %th Etat
+      %th Pays
+    = render :partial => 'subscriber', :collection => @subscribers

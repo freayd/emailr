@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  profile: 
+  field:     MyString
+  condition: MyString
+  value:     MyString
+
+two:
+  profile: 
+  field:     MyString
+  condition: MyString
+  value:     MyString

@@ -10,20 +10,10 @@ class NewslettersController < ApplicationController
 
   def new
     @newsletter = Newsletter.new(:start_at => Date.today, :frequency => 2, :frequency_unit => 'week')
-
-    @var_definitions = [
-      [ :date,       'date d\'envoi de l\'email'         ],
-      [ :time,       'heure d\'envoi de l\'email'        ],
-      [ :first_name, 'prénom du destinataire'            ],
-      [ :last_name,  'nom du destinataire'               ],
-      [ :email,      'email du destinataire'             ],
-      [ :birth,      'date de naissance du destinataire' ],
-      [ :age,        'age du destinataire'               ]
-    ]
   end
 
   def create
-    @newsletter = current_customer.newsletter.new(params[:newsletter])
+    @newsletter = current_customer.newsletters.new(params[:newsletter])
     if @newsletter.save
       flash[:notice] = 'Votre newsletter à bien été enregistrée. Le prochain envoi est programmé.'
       redirect_to(newsletters_path)

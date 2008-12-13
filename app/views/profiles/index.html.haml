@@ -1,0 +1,9 @@
+%h1
+  Profils
+  %small= "- #{@count}"
+- unless @profiles.empty?
+  %table
+    %tr
+      %th Nom
+      %th Actions
+    = render :partial => 'profile', :collection => @profiles

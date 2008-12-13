@@ -1,0 +1,5 @@
+%tr{ :class => cycle('even', 'odd') }
+  %td&= profile.name
+  %td
+    = link_to 'Visualiser', profile
+    = link_to 'Supprimer',  profile, :confirm => 'Etes vous sur de vouloir supprimer ce profil ?', :method => :delete

@@ -36,7 +36,7 @@
     %p.help
       Les chaînes de caractère suivantes sont considérées comme des variables dans le titre et corps de l'email:
       %ul
-        - @var_definitions.each do |var, definition|
+        - var_definitions.each do |var, definition|
           %li= "%#{content_tag(:b, h(var))}% : #{h(definition)}"
     %p
       = label_tag 'email_title', 'Titre'

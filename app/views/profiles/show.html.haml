@@ -1,0 +1,9 @@
+%h1
+  Profil:
+  &= @profile.name
+
+%p&= @profile.description
+
+%div
+  Critères:
+  %ul= render :partial => 'criterion', :collection => @profile.criteria

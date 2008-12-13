@@ -1,10 +1,11 @@
 %h1
   Mes newsletters
   %small= "- #{@count}"
-%table
-  %tr
-    %th Nom
-    %th Prochains envois
-    %th Statut
-    %th Actions
-  = render :partial => 'newsletter', :collection => @newsletters
+- unless @newsletters.empty?
+  %table
+    %tr
+      %th Nom
+      %th Prochains envois
+      %th Statut
+      %th Actions
+    = render :partial => 'newsletter', :collection => @newsletters

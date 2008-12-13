@@ -1,6 +1,8 @@
 class SubscribersController < ApplicationController
-  @@sub_menu << { :name => 'Liste',       :path => :subscribers        } \
-             << { :name => 'Importation', :path => :import_subscribers }
+  @@sub_menu << { :name => 'Liste',          :path => :subscribers        } \
+             << { :name => 'Importation',    :path => :import_subscribers } \
+             << { :name => 'Profils',        :path => :profiles           } \
+             << { :name => 'Nouveau profil', :path => :new_profile        }
 
 
   def index

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081212120256) do
+ActiveRecord::Schema.define(:version => 20081213133206) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(:version => 20081212120256) do
 
   add_index "admins", ["login"], :name => "index_admins_on_login", :unique => true
 
+  create_table "criteria", :force => true do |t|
+    t.integer  "profile_id"
+    t.string   "field"
+    t.string   "condition"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "customers", :force => true do |t|
     t.string   "company"
     t.text     "address"
@@ -65,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20081212120256) do
     t.integer  "frequency"
     t.text     "email_title"
     t.text     "email_content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "customer_id"
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
