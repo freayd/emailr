@@ -1,0 +1,6 @@
+- fields_for 'profiles[]', profile do |profile_fields|
+  %tr
+    %td
+      = profile.name
+      = profile_fields.hidden_field :id
+    %td= link_to_function 'supprimer', '$(this).parents("tr:first").remove()'

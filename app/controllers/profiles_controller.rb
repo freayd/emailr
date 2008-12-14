@@ -11,7 +11,10 @@ class ProfilesController < ApplicationController
   end
 
   def new
-    @profile = current_customer.profiles.build
+    respond_to do |format|
+      format.html { @profile = current_customer.profiles.build             }
+      format.js   { @profile = current_customer.profiles.find(params[:id]) } # new.js.rjs
+    end
   end
 
   def create

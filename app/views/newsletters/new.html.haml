@@ -15,6 +15,16 @@
       = f.text_area :description, :rows => 3
 
   %fieldset
+    %legend Profils ciblés
+    %p
+      = link_to_remote 'Ajouter', :url => new_profile_path, :method => :get, :with => "'id=' + $('#profile')[0].value"
+      le profil
+      = select_tag 'profile', options_for_select(profiles_for_select)
+    %table{ :id => 'profiles_area' }
+      = render :partial => 'profile', :collection => @newsletter.profiles
+
+
+  %fieldset
     %legend Dates et périodicité des envois
     %table
       %tr
@@ -32,7 +42,7 @@
 
   %fieldset
     %legend Modèle de l'email
-    %p.help
+    .help
       Les chaînes de caractère suivantes sont considérées comme des variables dans le titre et corps de l'email:
       %ul
         - Newsletter.email_variables.each do |var|
@@ -46,6 +56,6 @@
     %p
       = label_tag 'email_content', 'Contenu'
       %br
-      = f.text_area :email_content, :cols => 100, :rows => 60
+      = f.text_area :email_content, :cols => 100, :rows => 40
 
   %p= submit_tag 'Sauvegarder pour l\'envoi'

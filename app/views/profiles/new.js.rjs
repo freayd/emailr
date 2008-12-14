@@ -1,0 +1,2 @@
+page.insert_html   :bottom,    'profiles_area', :partial => 'newsletters/profile', :object => @profile
+page.visual_effect :highlight, 'profiles_area'

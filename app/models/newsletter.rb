@@ -1,5 +1,6 @@
 class Newsletter < ActiveRecord::Base
   belongs_to :customer
+  has_and_belongs_to_many :profiles
 
   def self.frequency_unit
     @@frequency_unit ||= %w( day week month )

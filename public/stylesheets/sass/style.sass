@@ -4,7 +4,7 @@
 =reset-width-height
   :width 0
   :height 0
-=round-borders
+=round-corners
   :-moz-border-radius 4px
 
 !dark_grey = #333
@@ -45,7 +45,7 @@ input, select, button, textarea
   :padding 0.3em
   :background-color #F4F4F5
   :border 1px solid #ECEDEE
-  +round-borders
+  +round-corners
 
   &.right
     :text-align right
@@ -61,7 +61,7 @@ input
 fieldset
   :border 1px solid #EEE
   :margin-bottom 1em
-  +round-borders
+  +round-corners
   & legend
     :color #AABACD
     :font-weight bold
@@ -86,9 +86,6 @@ table.form
   :border 1px solid #FFF
   :margin 0.5em 0
   :padding 0.5em 1em
-
-  *
-    +reset-margin-padding
 
 .errorExplanation,
 .flash.error
@@ -209,9 +206,9 @@ table.form
     small
       :opacity 0.6
 
-  table
+  table.listing
     :width 100%
-    +round-borders
+    +round-corners
 
     tr
       td, th

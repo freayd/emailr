@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :login_required
 
-  helper_method :sub_menu
+  helper_method :sub_menu, :current_customer
 
   protected
     @@sub_menu = Array.new

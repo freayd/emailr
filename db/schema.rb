@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081213133206) do
+ActiveRecord::Schema.define(:version => 20081214182240) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -76,6 +76,11 @@ ActiveRecord::Schema.define(:version => 20081213133206) do
     t.text     "email_content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "newsletters_profiles", :force => true do |t|
+    t.integer "newsletter_id"
+    t.integer "profile_id"
   end
 
   create_table "profiles", :force => true do |t|

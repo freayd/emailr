@@ -1,6 +1,7 @@
 class Profile < ActiveRecord::Base
   belongs_to :customer
   has_many :criteria
+  has_and_belongs_to_many :newsletters
 
   validates_presence_of   :name
   validates_uniqueness_of :name, :scope => :customer_id

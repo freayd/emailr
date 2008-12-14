@@ -13,7 +13,12 @@ class NewslettersController < ApplicationController
   end
 
   def create
-    @newsletter = current_customer.newsletters.new(params[:newsletter])
+    @newsletter = current_customer.newsletters.build(params[:newsletter])
+    if params[:profiles]
+      profile_ids = params[:profiles].values.collect { |p| p['id'] }
+      @newsletter.profiles = current_customer.profiles.find(profile_ids)
+    end
+
     if @newsletter.save
       flash[:notice] = 'Votre newsletter à bien été enregistrée. Le prochain envoi est programmé.'
       redirect_to(newsletters_path)
