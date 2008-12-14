@@ -7,6 +7,10 @@
 =round-borders
   :-moz-border-radius 4px
 
+!dark_grey = #333
+!light_grey = #FAFAFF
+!light_grey_darker = #F5F5FC
+
 
 // Général
 
@@ -55,8 +59,11 @@ input
     :border 1px solid #BBB
 
 fieldset
+  :border 1px solid #EEE
+  :margin-bottom 1em
   +round-borders
   & legend
+    :color #AABACD
     :font-weight bold
 
 table.form
@@ -73,6 +80,7 @@ table.form
       :width 20em
 
 .errorExplanation,
+.help,
 .flash.error,
 .flash.notification
   :border 1px solid #FFF
@@ -93,6 +101,11 @@ table.form
   :border-color #FFF59D
   :color #7F7518
 
+.help
+  :background #F2F8FF
+  :border-color #E1E9F2
+  :color #5E6E81
+
 .errorExplanation
   h2
     :line-height 1em
@@ -111,7 +124,7 @@ table.form
 // Tête de page
 #header
   :padding 0.5em 1em
-  :background-color #333
+  :background-color = !dark_grey
   :border-bottom 1px solid #111
   :color #888
   :position relative
@@ -165,7 +178,7 @@ table.form
 #sub_menu
   :float left
   :margin 1em 0 0 0
-  :padding 0 
+  :padding 0
   :width 15em
   :border-right 1px solid #ECEDEE
   :color #949697
@@ -178,13 +191,42 @@ table.form
     li
       :margin 0 0 4px 0
       :padding 0.5em
-      :background-color #FBFBFF
+      :background-color = !light_grey
 
       &:hover
-        :background-color #F8F8F9
+        :background-color = !light_grey_darker
 
 
 // Contenu principal
 
 #content
   :padding 0 1em 0 16em
+
+  h1
+    :font-size 1.5em
+    :letter-spacing -0.05em
+
+    small
+      :opacity 0.6
+
+  table
+    :width 100%
+    +round-borders
+
+    tr
+      td, th
+        :padding 0.2em 0.6em
+      th
+        :background-color = !dark_grey + 40
+        :color = !dark_grey + 140
+        :font-weight normal
+        :text-align left
+
+      &.odd
+        :background = !light_grey_darker
+        &:hover
+          :background = !light_grey_darker - 10
+      &.even
+        :background = !light_grey
+        &:hover
+          :background = !light_grey - 10
