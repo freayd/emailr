@@ -11,3 +11,6 @@
     %th Etat
     %th Pays
   = render :partial => 'subscribers/subscriber', :collection => @subscribers
+
+- if @subscribers.respond_to?(:total_pages)
+  = will_paginate @subscribers

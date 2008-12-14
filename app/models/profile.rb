@@ -24,6 +24,10 @@ class Profile < ActiveRecord::Base
     end
 
     options[:conditions] = conditions unless conditions.empty?
-    customer.subscribers.find(:all, options)
+    if options.delete(:paginate)
+      customer.subscribers.paginate(options)
+    else
+      customer.subscribers.find(:all, options)
+    end
   end
 end

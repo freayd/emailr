@@ -28,7 +28,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile     = current_customer.profiles.find(params[:id])
-    @subscribers = @profile.subscribers
+    @subscribers = @profile.subscribers(:paginate => true, :page => params[:page], :order => 'identifier ASC')
   end
 
   def destroy

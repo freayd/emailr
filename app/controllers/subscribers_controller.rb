@@ -7,7 +7,7 @@ class SubscribersController < ApplicationController
 
   def index
     @count       = current_customer.subscribers.size
-    @subscribers = current_customer.subscribers.find(:all, :order => 'identifier ASC')
+    @subscribers = current_customer.subscribers.paginate(:page => params[:page], :order => 'identifier ASC')
   end
 
   def import
