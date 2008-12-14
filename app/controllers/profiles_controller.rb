@@ -12,8 +12,7 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
-    2.times { @profile.criteria.build }
- end
+  end
 
   def create
     @profile = current_customer.profiles.new(params[:profile])

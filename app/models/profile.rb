@@ -6,6 +6,6 @@ class Profile < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :customer_id
 
   def validate
-    errors.add_to_base('At least one criterion is required') unless criteria.size > 0
+    errors.add_to_base(I18n.t 'profile.validate.criterion_required') unless criteria.size > 0
   end
 end

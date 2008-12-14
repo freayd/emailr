@@ -1,11 +1,5 @@
 module NewslettersHelper
-  def var_definitions
-    Array.new << [ :date,       'date d\'envoi de l\'email'         ] \
-              << [ :time,       'heure d\'envoi de l\'email'        ] \
-              << [ :first_name, 'prénom du destinataire'            ] \
-              << [ :last_name,  'nom du destinataire'               ] \
-              << [ :email,      'email du destinataire'             ] \
-              << [ :birth,      'date de naissance du destinataire' ] \
-              << [ :age,        'age du destinataire'               ]
+  def frequency_unit_options_for_select
+    Newsletter.frequency_unit.collect { |unit| [ t("newsletter.frequency_unit.#{unit}"), unit ] }
   end
 end

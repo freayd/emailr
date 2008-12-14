@@ -3,8 +3,8 @@
   %td&= subscriber.email
   %td&= subscriber.first_name
   %td&= subscriber.last_name
-  %td&= subscriber.male? ? 'homme' : 'femme'        if subscriber.gender?
-  %td&= subscriber.birth.to_formatted_s('%d-%m-%Y') if subscriber.birth?
+  %td&= t "subscriber.gender.#{subscriber.gender}" if subscriber.gender?
+  %td&= subscriber.birth.to_formatted_s            if subscriber.birth?
   %td&= subscriber.age
   %td&= subscriber.city
   %td&= subscriber.state

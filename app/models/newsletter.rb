@@ -1,8 +1,15 @@
 class Newsletter < ActiveRecord::Base
   belongs_to :customer
 
+  def self.frequency_unit
+    @@frequency_unit ||= %w( day week month )
+  end
+  def self.email_variables
+    @@email_variables ||= %w( date time first_name last_name email birth age )
+  end
+
   validates_presence_of  :name, :start_at, :email_content
-  validates_inclusion_of :frequency_unit, :in => %w( day week month ), :allow_nil => true
+  validates_inclusion_of :frequency_unit, :in => self.frequency_unit, :allow_nil => true
 
 
   def periodic?

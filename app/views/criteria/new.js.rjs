@@ -1,0 +1,2 @@
+page.insert_html   :bottom,    'criteria_area', :partial => 'criterion', :object => @criterion
+page.visual_effect :highlight, 'criteria_area'

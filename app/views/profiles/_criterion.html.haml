@@ -1,4 +1,4 @@
 %li
-  &= criterion_field_option(criterion.field)
-  &= criterion_condition_option(criterion.condition)
+  = t "criterion.field.#{criterion.field}"
+  = t "criterion.condition.#{criterion.condition}"
   &= "'#{criterion.value}'"

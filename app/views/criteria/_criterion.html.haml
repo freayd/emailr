@@ -1,0 +1,8 @@
+- fields_for 'criteria[]', criterion do |criterion_fields|
+  %tr
+    %td
+      = t "criterion.field.#{criterion.field}"
+      = criterion_fields.hidden_field :field
+    %td= criterion_fields.select       :condition, condition_options_for_select
+    %td= criterion_fields.text_field   :value
+    %td= link_to_function 'Supprimer le critère', '$(this).parents("tr:first").remove()'

@@ -16,11 +16,12 @@
 
   %fieldset
     %legend Critères
-    - @profile.criteria.each_with_index do |criterion, index|
-      - fields_for "criteria[]", criterion do |criterion_fields|
-        %div
-          = criterion_fields.select     :field,     criterion_field_options
-          = criterion_fields.select     :condition, criterion_condition_options
-          = criterion_fields.text_field :value
+    %p
+      = link_to_remote 'Ajouter', :url => new_criterion_path, :method => :get, :with => "'field=' + $('#field')[0].value"
+      un critère sur
+      = select_tag 'field', options_for_select(field_options_for_select)
+
+    %table{ :id => 'criteria_area' }
+      = render :partial => 'criteria/criterion', :collection => @profile.criteria
 
   %p= submit_tag 'Enregistrer'

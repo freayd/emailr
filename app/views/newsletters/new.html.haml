@@ -16,28 +16,29 @@
 
   %fieldset
     %legend Dates et périodicité des envois
-    - date_select_options = { :order => [ :day, :month, :year ], :include_blank => true }
     %table
       %tr
         %td= label_tag 'start_at', 'Début des envois :'
-        %td= f.date_select :start_at, date_select_options
+        %td= f.date_select :start_at
       %tr
         %td= label_tag 'stop_at', 'Fin des envois :'
-        %td= f.date_select :stop_at, date_select_options
+        %td= f.date_select :stop_at, :include_blank => true
       %tr
         %td= label_tag 'frequency', 'Fréquence :'
         %td
           tou(te)s les
           = f.text_field :frequency, :class => 'right', :size => 3
-          = f.select :frequency_unit, [ ['jour(s)', 'day'], ['semaine(s)', 'week'], ['mois', 'month'] ]
+          = f.select :frequency_unit, frequency_unit_options_for_select
 
   %fieldset
     %legend Modèle de l'email
     %p.help
       Les chaînes de caractère suivantes sont considérées comme des variables dans le titre et corps de l'email:
       %ul
-        - var_definitions.each do |var, definition|
-          %li= "%#{content_tag(:b, h(var))}% : #{h(definition)}"
+        - Newsletter.email_variables.each do |var|
+          %li
+            = "%#{content_tag(:b, h(var))}% : "
+            = t "newsletter.email_variables.#{var}"
     %p
       = label_tag 'email_title', 'Titre'
       %br
