@@ -23,6 +23,20 @@ class SubscribersController < ApplicationController
       flash[:error]  = 'Erreur lors de l\'importation des abonnés. Impossible d\'importer les lignes suivantes:'
       errors.each { |e| flash[:error] += "\n- l.#{e[:line]}: #{e[:message]}" }
     end
-    redirect_to subscribers_path
+    redirect_to(subscribers_path)
+  end
+
+  def list
+    profile = current_customer.profiles.build(params[:profile])
+
+    profile.criteria.build(params[:criteria]) if params[:criteria]
+    profile.criteria.reject! { |criterion| !criterion.valid? }
+
+    @subscribers = profile.subscribers(:limit => 10)
+
+    respond_to do |format|
+      format.html { redirect_to(subscribers_path) }
+      format.js # list.js.rjs
+    end
   end
 end

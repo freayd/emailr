@@ -20,8 +20,15 @@
       = link_to_remote 'Ajouter', :url => new_criterion_path, :method => :get, :with => "'field=' + $('#field')[0].value"
       un critère sur
       = select_tag 'field', options_for_select(field_options_for_select)
-
     %table{ :id => 'criteria_area' }
       = render :partial => 'criteria/criterion', :collection => @profile.criteria
+
+  %fieldset
+    %legend
+      Aperçu des abonnés -
+      = submit_to_remote 'update_subscribers_preview', 'mise à jour', :url => list_subscribers_path
+    %p.help Les critères incomplets sont ignorés.
+    %div{ :id => 'subscribers_area' }
+      %em Veuillez mettre la liste à jour
 
   %p= submit_tag 'Enregistrer'

@@ -9,15 +9,21 @@ class Profile < ActiveRecord::Base
     errors.add_to_base(I18n.t 'profile.validate.criterion_required') unless criteria.size > 0
   end
 
-  def subscribers
-    conditions = [ '' ]
+  def subscribers(options={})
+    conditions = Array.new
     criteria.each do |criterion|
       sql_condition = criterion.to_sql_condition
 
-      conditions.first << ' AND ' unless conditions.first.blank?
+      if conditions.empty?
+        conditions << ''
+      else
+        conditions.first << ' AND '
+      end
       conditions.first << sql_condition.first
       conditions << sql_condition.second
     end
-    customer.subscribers.find(:all, :conditions => conditions)
+
+    options[:conditions] = conditions unless conditions.empty?
+    customer.subscribers.find(:all, options)
   end
 end

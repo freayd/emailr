@@ -11,11 +11,11 @@ class ProfilesController < ApplicationController
   end
 
   def new
-    @profile = Profile.new
+    @profile = current_customer.profiles.build
   end
 
   def create
-    @profile = current_customer.profiles.new(params[:profile])
+    @profile = current_customer.profiles.build(params[:profile])
     @profile.criteria.build(params[:criteria]) if params[:criteria]
     if @profile.save
       flash[:notice] = 'Le profil à bien été enregistrée.'

@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register',                  :controller => 'accounts', :action => 'create', :conditions => { :method => :post }
   map.activate '/activate/:activation_code', :controller => 'accounts', :action => 'activate', :activation_code => nil
 
-  map.resources :subscribers, :only   => :index,             :collection => { :import => [ :get, :post ] }
+  map.resources :subscribers, :only   => :index,             :collection => { :import => [ :get, :post ], :list => :post }
   map.resources :profiles,    :except => [ :edit, :update ], :path_prefix => '/subscribers'
   map.resources :criteria,    :only   => :new,               :path_prefix => '/subscribers/profiles'
 

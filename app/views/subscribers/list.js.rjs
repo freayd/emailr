@@ -1,0 +1,2 @@
+page.replace_html              'subscribers_area', :partial => 'subscribers/subscribers', :object => @subscribers
+page.visual_effect :highlight, 'subscribers_area'
