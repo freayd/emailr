@@ -122,12 +122,19 @@ fr:
       state:       "état"
       country:     "pays"
     condition:
-      less_than:                "inférieur à"
-      less_than_or_equal_to:    "inférieur ou égal à"
-      equal_to:                 "égal à"             
-      not_equal_to:             "différent de"
-      greater_than_or_equal_to: "supérieur ou égal à"
-      greater_than:             "supérieur à"   
+      invalid_for_field: "La condition est invalide pour ce critère"
+      less_than:                  "inférieur à"
+      less_than_or_equal_to:      "inférieur ou égal à"
+      equal_to:                   "égal à"             
+      not_equal_to:               "différent de"
+      greater_than_or_equal_to:   "supérieur ou égal à"
+      greater_than:               "supérieur à"   
+      matches_exactly:            "correspond exactement à"
+      matches_regular_expression: "correspond à l'expression régulière"
+      contains:                   "contient"
+      does_not_contain:           "ne contient pas"
+      starts_with:                "commence par"
+      ends_with:                  "finit par"
 
   newsletter:
     frequency_unit:
