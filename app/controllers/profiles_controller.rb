@@ -27,7 +27,8 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = current_customer.profiles.find(params[:id])
+    @profile     = current_customer.profiles.find(params[:id])
+    @subscribers = @profile.subscribers
   end
 
   def destroy

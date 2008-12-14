@@ -43,6 +43,13 @@ class Subscriber < ActiveRecord::Base
   end
 
 
+  before_save :define_age
+
+  def define_age
+    write_attribute(:age, self.age)
+  end
+
+
   def age(on=Date.today)
     return read_attribute(:age) unless birth?
 

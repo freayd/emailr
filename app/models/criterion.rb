@@ -27,4 +27,21 @@ class Criterion < ActiveRecord::Base
   def validate
     errors.add('condition', I18n.t('criterion.condition.invalid_for_field')) unless self.class.conditions_for_field(field).include?(condition)
   end
+
+  def to_sql_condition
+    case condition
+      when 'less_than'                  then [ "#{field} < ?",            value    ]
+      when 'less_than_or_equal_to'      then [ "#{field} <= ?",           value    ]
+      when 'equal_to'                   then [ "#{field} = ?",            value    ]
+      when 'not_equal_to'               then [ "#{field} <> ?",           value    ]
+      when 'greater_than_or_equal_to'   then [ "#{field} >= ?",           value    ]
+      when 'greater_than'               then [ "#{field} > ?",            value    ]
+      when 'matches_exactly'            then [ "#{field} = ?",            value    ]
+      when 'matches_regular_expression' then [ "#{field} REGEXP ?",       value    ]
+      when 'contains'                   then [ "#{field} LIKE ?",     "%#{value}%" ]
+      when 'does_not_contain'           then [ "#{field} NOT LIKE ?", "%#{value}%" ]
+      when 'starts_with'                then [ "#{field} LIKE ?",     "%#{value}"  ]
+      when 'ends_with'                  then [ "#{field} LIKE ?",      "#{value}%" ]
+    end
+  end
 end

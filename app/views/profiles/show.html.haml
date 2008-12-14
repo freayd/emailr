@@ -5,5 +5,10 @@
 %p&= @profile.description
 
 %div
-  Critères:
+  %h4 Critères:
   %ul= render :partial => 'criterion', :collection => @profile.criteria
+
+%div
+  %h4= "Abonnés correspondants - #{@subscribers.size} :"
+  - unless @subscribers.empty?
+    = render :partial => 'subscribers/subscribers', :object => @subscribers
