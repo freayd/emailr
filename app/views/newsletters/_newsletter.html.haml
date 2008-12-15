@@ -1,5 +1,9 @@
 %tr{ :class => cycle('even', 'odd') }
   %td&= newsletter.name
-  %td= newsletter.next_deliveries.collect { |d| d.to_formatted_s }.join(tag('br'))
+  %td
+    - newsletter.next_issues.each do |issue|
+      %div= render :partial => 'issue', :object => issue
   %td
   %td
+    = link_to 'Visualiser', newsletter
+    = link_to 'Supprimer',  newsletter, :confirm => 'Etes vous sur de vouloir supprimer cette newsletter ?', :method => :delete

@@ -27,4 +27,15 @@ class NewslettersController < ApplicationController
       render :action => 'new'
     end
   end
+
+  def show
+    @newsletter = current_customer.newsletters.find(params[:id])
+  end
+
+  def destroy
+    current_customer.newsletters.destroy(params[:id])
+
+    flash[:notice] = 'Newsletter supprimée avec succès.'
+    redirect_to(newsletters_path)
+  end
 end

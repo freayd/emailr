@@ -1,0 +1,5 @@
+- if issue.new_record?
+  = issue.deliver_at.to_date.to_formatted_s(:long)
+  = link_to 'créer', new_newsletter_issue_path(issue.newsletter, :deliver_at => issue.deliver_at.to_s(:db))
+- else
+  = link_to issue.deliver_at.to_formatted_s, newsletter_issue_path(issue.newsletter, issue)

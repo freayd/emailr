@@ -1,0 +1,45 @@
+%h1
+  Newsletter :
+  &= @newsletter.name
+
+%p&= @newsletter.description
+
+- unless @newsletter.profiles.empty?
+  %div
+    %h4 Profils ciblés :
+    %ul
+      - @newsletter.profiles.each do |profile|
+        %li= link_to h(profile.name), profile
+
+%div
+  %h4 Dates et périodicité des envois :
+  %table
+    %tr
+      %td Début :
+      %td&= @newsletter.start_at.to_formatted_s(:long)
+    - if @newsletter.stop_at?
+      %tr
+        %td Fin :
+        %td&= @newsletter.stop_at.to_formatted_s(:long)
+    - if @newsletter.periodic?
+      %tr
+        %td Fréquence :
+        %td
+          tou(te)s les
+          &= @newsletter.frequency
+          &= t "newsletter.frequency_unit.#{@newsletter.frequency_unit}"
+
+%div
+  %h4 Prochains envois :
+  %ul
+    - @newsletter.next_issues.each do |issue|
+      %li= render :partial => 'issue', :object => issue
+
+%div
+  %h4 Email :
+  %div
+    %h5 Titre :
+    &= @newsletter.email_title
+  %div
+    %h5 Contenu :
+    &= @newsletter.email_content

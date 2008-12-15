@@ -35,8 +35,7 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    @profile = current_customer.profiles.find(params[:id])
-    @profile.destroy
+    current_customer.profiles.destroy(params[:id])
 
     flash[:notice] = 'Profil supprimé avec succès.'
     redirect_to(profiles_path)

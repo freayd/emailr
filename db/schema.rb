@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081214182240) do
+ActiveRecord::Schema.define(:version => 20081214213438) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(:version => 20081214182240) do
     t.datetime "updated_at"
   end
 
+  create_table "issues", :force => true do |t|
+    t.integer  "newsletter_id"
+    t.datetime "deliver_at"
+    t.boolean  "deliver",       :default => false
+    t.text     "email_title"
+    t.text     "email_content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "newsletters", :force => true do |t|
     t.integer  "customer_id"
     t.string   "name"
@@ -78,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20081214182240) do
     t.datetime "updated_at"
   end
 
-  create_table "newsletters_profiles", :force => true do |t|
+  create_table "newsletters_profiles", :id => false, :force => true do |t|
     t.integer "newsletter_id"
     t.integer "profile_id"
   end

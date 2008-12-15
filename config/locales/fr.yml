@@ -141,12 +141,16 @@ fr:
       day:   "jour(s)"
       week:  "semaine(s)"
       month: "mois"
-    email_variables:
-      date:       "date d'envoi de l'email"
-      time:       "heure d'envoi de l'email"
-      first_name: "prénom du destinataire"
-      last_name:  "nom du destinataire"
-      email:      "email du destinataire"
-      birth:      "date de naissance du destinataire"
-      age:        "age du destinataire"
+    help:
+      content_type: "Afin de réaliser une newsletter efficace, nous vous conseillons de créer votre email au format html. Ce dernier vous permettra de savoir si le destinataire à lu son email via l'insertion d'une balise image. Cette information étant capitale, nous vous conseillons de créer un contenu qui donne envie de voir les images de votre email et ainsi désactiver le masquage quasi-automatique des lecteurs de mail."
+      email_variables:
+        head:    "Les chaînes de caractère suivantes sont considérées comme des variables dans le titre et corps de l'email :"
+        tracker: "code HTML à insérer pour savoir si le destinataire a lu son email"
+        date:       "date d'envoi de l'email"
+        time:       "heure d'envoi de l'email"
+        first_name: "prénom du destinataire"
+        last_name:  "nom du destinataire"
+        email:      "email du destinataire"
+        birth:      "date de naissance du destinataire"
+        age:        "age du destinataire"
 

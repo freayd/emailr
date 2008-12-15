@@ -12,7 +12,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :profiles,    :except => [ :edit, :update ], :path_prefix => '/subscribers'
   map.resources :criteria,    :only   => :new,               :path_prefix => '/subscribers/profiles'
 
-  map.resources :newsletters, :only => [ :index, :new, :create ]
+  map.resources :newsletters, :except => [ :edit, :update ] do |newsletter|
+    newsletter.resources :issues, :only => [ :new, :create, :show ]
+  end
 
   map.namespace :backend do |backend|
     backend.resource :session, :only => [ :new, :create, :destroy ]

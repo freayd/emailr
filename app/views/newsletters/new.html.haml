@@ -42,13 +42,7 @@
 
   %fieldset
     %legend Modèle de l'email
-    .help
-      Les chaînes de caractère suivantes sont considérées comme des variables dans le titre et corps de l'email:
-      %ul
-        - Newsletter.email_variables.each do |var|
-          %li
-            = "%#{content_tag(:b, h(var))}% : "
-            = t "newsletter.email_variables.#{var}"
+    = render :partial => 'content_help'
     %p
       = label_tag 'email_title', 'Titre'
       %br

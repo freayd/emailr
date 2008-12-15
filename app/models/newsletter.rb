@@ -1,12 +1,13 @@
 class Newsletter < ActiveRecord::Base
   belongs_to :customer
+  has_many :issues
   has_and_belongs_to_many :profiles
 
   def self.frequency_unit
     @@frequency_unit ||= %w( day week month )
   end
   def self.email_variables
-    @@email_variables ||= %w( date time first_name last_name email birth age )
+    @@email_variables ||= %w( tracker date time first_name last_name email birth age )
   end
 
   validates_presence_of  :name, :start_at, :email_content
@@ -47,10 +48,29 @@ class Newsletter < ActiveRecord::Base
     return date unless stop_at? && date > stop_at
   end
 
-  # Retourne les count prochaines dates d'envoi.
+  # Retourne les X prochaines dates d'envoi.
   def next_deliveries(count = 3)
     deliveries = Array.new
     1.upto(count) { |nth| deliveries << next_delivery(:nth => nth) }
     deliveries.reject { |d| d.nil? }
   end
+
+  # Retourne le prochain envoi.
+  def next_issue(options={})
+    issue_from_date(next_delivery(options))
+  end
+
+  # Retourne les X prochains envois.
+  def next_issues(count = 3)
+    result = Array.new
+    next_deliveries(count).each { |date| result << issue_from_date(date) }
+    result
+  end
+
+  protected
+    def issue_from_date(date)
+      issue   = issues.find(:first, :conditions => [ 'deliver_at LIKE ?', "#{date.to_s(:db)}%" ])
+      issue ||= issues.build(:deliver_at => date.to_datetime, :email_title => email_title, :email_content => email_content)
+      issue
+    end
 end

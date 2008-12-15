@@ -1,12 +1,19 @@
 %h1
-  Profil:
+  Profil :
   &= @profile.name
 
 %p&= @profile.description
 
 %div
-  %h4 Critères:
+  %h4 Critères :
   %ul= render :partial => 'criterion', :collection => @profile.criteria
+
+- unless @profile.newsletters.empty?
+  %div
+    %h4 Newsletters correspondantes :
+    %ul
+      - @profile.newsletters.each do |newsletter|
+        %li= link_to h(newsletter.name), newsletter
 
 %div
   %h4= "Abonnés correspondants - #{@subscribers.size} :"

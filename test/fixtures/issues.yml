@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  newsletter: 
+  email_title:   MyText
+  email_content: MyText
+  deliver_at:    2008-12-14 22:34:38
+  deliver:       false
+
+two:
+  newsletter: 
+  email_title:   MyText
+  email_content: MyText
+  deliver_at:    2008-12-14 22:34:38
+  deliver:       false

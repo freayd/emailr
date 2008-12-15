@@ -1,0 +1,9 @@
+.help
+  = t 'newsletter.help.content_type'
+  %br
+  = t 'newsletter.help.email_variables.head'
+  %ul
+    - Newsletter.email_variables.each do |var|
+      %li
+        = "%#{content_tag(:b, h(var))}% : "
+        = t "newsletter.help.email_variables.#{var}"

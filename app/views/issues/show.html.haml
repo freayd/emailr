@@ -1,0 +1,10 @@
+%h1
+  Envoi du
+  &= @issue.deliver_at.to_formatted_s
+  %small&= "- #{@issue.newsletter.name}"
+
+%div
+  %h4 Titre:
+  &= @issue.email_title
+  %h4 Contenu :
+  &= @issue.email_content

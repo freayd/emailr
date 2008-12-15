@@ -1,0 +1,30 @@
+%h1 Nouvel envoi
+%h3&= "Newsletter '#{@newsletter.name}'"
+
+= error_messages_for :issue
+- form_for @issue, :url => newsletter_issues_path(@newsletter) do |f|
+
+  %fieldset
+    %legend Conditions d'envoi
+    %p
+      = label_tag 'deliver_at', 'Date et heure'
+      \:
+      = f.datetime_select :deliver_at
+    %p
+      = label_tag 'deliver', 'Autoriser l\'envoi'
+      \:
+      = f.check_box :deliver
+
+  %fieldset
+    %legend Contenu de l'email
+    = render :partial => 'newsletters/content_help'
+    %p
+      = label_tag 'email_title', 'Titre'
+      %br
+      = f.text_field :email_title, :size => 50
+    %p
+      = label_tag 'email_content', 'Contenu'
+      %br
+      = f.text_area :email_content, :cols => 100, :rows => 40
+
+  %p= submit_tag 'Sauvegarder'
