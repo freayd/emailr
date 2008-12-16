@@ -25,4 +25,9 @@ class IssuesController < ApplicationController
   def show
     @issue = current_customer.issues.find(params[:id])
   end
+
+  def preview
+    @issue = current_customer.issues.find(params[:issue_id])
+    render :text => @issue.preview_content
+  end
 end

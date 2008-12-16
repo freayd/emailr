@@ -146,6 +146,7 @@ fr:
       email_variables:
         head:    "Les chaînes de caractère suivantes sont considérées comme des variables dans le titre et corps de l'email :"
         tracker: "code HTML à insérer pour savoir si le destinataire a lu son email"
+        link:    "lien que vous désirez insérer dans votre email, exemple: %link|Article 1|mywebsite.com/article1%"
         date:       "date d'envoi de l'email"
         time:       "heure d'envoi de l'email"
         first_name: "prénom du destinataire"

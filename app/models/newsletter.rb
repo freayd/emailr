@@ -7,12 +7,24 @@ class Newsletter < ActiveRecord::Base
     @@frequency_unit ||= %w( day week month )
   end
   def self.email_variables
-    @@email_variables ||= %w( tracker date time first_name last_name email birth age )
+    @@email_variables ||= %w( tracker link date time first_name last_name email birth age )
   end
 
   validates_presence_of  :name, :start_at, :email_content
   validates_inclusion_of :frequency_unit, :in => self.frequency_unit, :allow_nil => true
 
+
+  def subscribers
+    return customer.subscribers if profiles.empty?
+
+    subscribers_by_ids = Hash.new
+    profiles.each do |profile|
+      profile.subscribers.each do |subscriber|
+        subscribers_by_ids[subscriber.id] = subscriber unless subscribers_by_ids.has_key?(subscriber.id)
+      end
+    end
+    subscribers_by_ids.values
+  end
 
   def periodic?
     frequency?

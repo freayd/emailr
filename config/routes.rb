@@ -13,7 +13,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :criteria,    :only   => :new,               :path_prefix => '/subscribers/profiles'
 
   map.resources :newsletters, :except => [ :edit, :update ] do |newsletter|
-    newsletter.resources :issues, :only => [ :new, :create, :show ]
+    newsletter.resources :issues, :only => [ :new, :create, :show ] do |issue|
+      issue.preview 'preview', :controller => 'issues', :action => 'preview', :conditions => { :method => :get }
+    end
+  end
+
+  map.with_options :controller => 'logger', :conditions => { :method => :get }, :path_prefix => 'logger' do |logger|
+    logger.email_opened  '/email_opened',  :action => 'email_opened'
+    logger.email_forward '/email_forward', :action => 'email_forward'
+    logger.tracking      '/tracking',      :action => 'tracking'
   end
 
   map.namespace :backend do |backend|

@@ -7,4 +7,6 @@
   %h4 Titre:
   &= @issue.email_title
   %h4 Contenu :
-  &= @issue.email_content
+  .help
+    Le contenu est un exemple de newsletter que recevra un abonné.
+  %iframe{ :src => newsletter_issue_preview_path(@issue.newsletter, @issue), :width => '100%', :height => '300'}/
