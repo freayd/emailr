@@ -7,5 +7,5 @@ class Customer < ActiveRecord::Base
 
   validates_presence_of   :company
   validates_uniqueness_of :company
-  validates_presence_of   :address, :city, :country, :phone_number
+  validates_presence_of   :website, :address, :city, :country, :phone_number
 end

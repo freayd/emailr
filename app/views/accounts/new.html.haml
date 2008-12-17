@@ -12,6 +12,11 @@
         = customer_fields.text_field :company
 
       %p
+        = label_tag 'website', 'Site internet'
+        %br
+        = customer_fields.text_field :website
+
+      %p
         = label_tag 'address', 'Adresse'
         %br
         = customer_fields.text_area :address, :rows => 3

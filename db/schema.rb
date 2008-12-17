@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081216222559) do
+ActiveRecord::Schema.define(:version => 20081217062413) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(:version => 20081216222559) do
     t.string   "siret"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website"
+  end
+
+  create_table "emailing_link_logs", :force => true do |t|
+    t.integer  "visitor_id"
+    t.integer  "issue_id"
+    t.text     "forward_to"
+    t.datetime "created_at"
+  end
+
+  create_table "emailing_logs", :force => true do |t|
+    t.integer  "visitor_id"
+    t.integer  "issue_id"
+    t.datetime "created_at"
   end
 
   create_table "issues", :force => true do |t|
@@ -131,6 +145,15 @@ ActiveRecord::Schema.define(:version => 20081216222559) do
 
   add_index "subscribers", ["customer_id", "email"], :name => "index_subscribers_on_customer_id_and_email", :unique => true
   add_index "subscribers", ["customer_id", "identifier"], :name => "index_subscribers_on_customer_id_and_identifier", :unique => true
+
+  create_table "tracking_logs", :force => true do |t|
+    t.integer  "visitor_id"
+    t.integer  "issue_id"
+    t.text     "url"
+    t.text     "referrer"
+    t.time     "logged_at"
+    t.datetime "created_at"
+  end
 
   create_table "visitors", :force => true do |t|
     t.integer  "customer_id"

@@ -4,7 +4,6 @@ class CreateEmailingLinkLogs < ActiveRecord::Migration
       t.references :visitor
       t.references :issue
       t.text     :forward_to
-      t.datetime :logged_at
 
       t.datetime :created_at
     end
