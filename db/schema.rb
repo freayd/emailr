@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081214213438) do
+ActiveRecord::Schema.define(:version => 20081216222559) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -131,5 +131,16 @@ ActiveRecord::Schema.define(:version => 20081214213438) do
 
   add_index "subscribers", ["customer_id", "email"], :name => "index_subscribers_on_customer_id_and_email", :unique => true
   add_index "subscribers", ["customer_id", "identifier"], :name => "index_subscribers_on_customer_id_and_identifier", :unique => true
+
+  create_table "visitors", :force => true do |t|
+    t.integer  "customer_id"
+    t.integer  "subscriber_id"
+    t.string   "cookie"
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "visitors", ["cookie"], :name => "index_visitors_on_cookie", :unique => true
 
 end

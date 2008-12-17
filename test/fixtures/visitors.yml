@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  customer: 
+  subscriber: 
+  cookie: MyString
+  ip_address: MyString
+
+two:
+  customer: 
+  subscriber: 
+  cookie: MyString
+  ip_address: MyString
