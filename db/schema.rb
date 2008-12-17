@@ -160,6 +160,11 @@ ActiveRecord::Schema.define(:version => 20081217062413) do
     t.integer  "subscriber_id"
     t.string   "cookie"
     t.string   "ip_address"
+    t.text     "user_agent"
+    t.integer  "screen_width"
+    t.integer  "screen_height"
+    t.integer  "pixel_depth"
+    t.integer  "color_depth"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

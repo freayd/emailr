@@ -11,5 +11,4 @@ class Visitor < ActiveRecord::Base
   def new_cookie!
     write_attribute(:cookie, new_cookie)
   end
-
 end
