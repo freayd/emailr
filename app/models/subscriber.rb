@@ -2,6 +2,8 @@ require 'csv'
 
 class Subscriber < ActiveRecord::Base
   belongs_to :customer
+  has_many :deliveries
+  has_many :issues, :through => :deliveries
 
   validates_presence_of   :identifier
   validates_uniqueness_of :identifier, :scope => :customer_id

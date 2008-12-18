@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081217062413) do
+ActiveRecord::Schema.define(:version => 20081218055213) do
 
   create_table "accounts", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(:version => 20081217062413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "website"
+  end
+
+  create_table "deliveries", :force => true do |t|
+    t.integer  "issue_id"
+    t.integer  "subscriber_id"
+    t.datetime "sended_at"
   end
 
   create_table "emailing_link_logs", :force => true do |t|
