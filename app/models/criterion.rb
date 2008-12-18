@@ -40,8 +40,8 @@ class Criterion < ActiveRecord::Base
       when 'matches_regular_expression' then [ "#{field} REGEXP ?",       value    ]
       when 'contains'                   then [ "#{field} LIKE ?",     "%#{value}%" ]
       when 'does_not_contain'           then [ "#{field} NOT LIKE ?", "%#{value}%" ]
-      when 'starts_with'                then [ "#{field} LIKE ?",     "%#{value}"  ]
-      when 'ends_with'                  then [ "#{field} LIKE ?",      "#{value}%" ]
+      when 'starts_with'                then [ "#{field} LIKE ?",      "#{value}%" ]
+      when 'ends_with'                  then [ "#{field} LIKE ?",     "%#{value}"  ]
     end
   end
 end
