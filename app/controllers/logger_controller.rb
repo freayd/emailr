@@ -1,6 +1,8 @@
 class LoggerController < ApplicationController
   include Tracking
 
+  skip_before_filter :login_required
+
   def email_opened
     load_cookies
     @subscriber = Subscriber.find(params[:s]) rescue nil
