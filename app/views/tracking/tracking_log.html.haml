@@ -11,8 +11,10 @@
       %td
         - if log.issue_id?
           = link_to log.issue.newsletter.name, log.issue.newsletter
-      %td= link_to log.url
+      %td= link_to truncate(log.url), log.url
       %td
         - if log.referrer?
-          = link_to log.referrer
+          = link_to truncate(log.referrer), log.referrer
       %td&= log.created_at
+
+= will_paginate @logs

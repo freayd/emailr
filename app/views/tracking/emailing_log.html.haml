@@ -8,3 +8,5 @@
       %td&= log.visitor_id
       %td=  link_to log.issue.newsletter.name, log.issue.newsletter
       %td&= log.created_at
+
+= will_paginate @logs
