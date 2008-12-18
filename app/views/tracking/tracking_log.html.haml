@@ -1,0 +1,18 @@
+%table.listing
+  %tr
+    %th Visiteur
+    %th Newsletter
+    %th Url
+    %th Url de provenance
+    %th Loggé le
+  - @logs.each do |log|
+    %tr
+      %td&= log.visitor_id
+      %td
+        - if log.issue_id?
+          = link_to log.issue.newsletter.name, log.issue.newsletter
+      %td= link_to log.url
+      %td
+        - if log.referrer?
+          = link_to log.referrer
+      %td&= log.created_at

@@ -18,10 +18,17 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
 
-  map.with_options :controller => 'logger', :conditions => { :method => :get }, :path_prefix => 'logger' do |logger|
-    logger.email_opened  '/email_opened',  :action => 'email_opened'
-    logger.email_forward '/email_forward', :action => 'email_forward'
-    logger.tracking      '/tracking',      :action => 'tracking'
+  map.with_options :controller => 'logger', :conditions => { :method => :get } do |logger|
+    logger.email_opened_logger  'logger/email_opened',  :action => 'email_opened'
+    logger.email_forward_logger 'logger/email_forward', :action => 'email_forward'
+    logger.tracking_logger      'logger/tracking',      :action => 'tracking'
+  end
+
+  map.with_options :controller => 'tracking', :conditions => { :method => :get } do |track|
+    track.tracking          'tracking',                   :action => 'index'
+    track.emailing_log      'tracking/log/emailing',      :action => 'emailing_log'
+    track.emailing_link_log 'tracking/log/emailing_link', :action => 'emailing_link_log'
+    track.tracking_log      'tracking/log/tracking',      :action => 'tracking_log'
   end
 
   map.namespace :backend do |backend|

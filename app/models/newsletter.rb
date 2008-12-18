@@ -2,6 +2,9 @@ class Newsletter < ActiveRecord::Base
   belongs_to :customer
   has_many :issues
   has_and_belongs_to_many :profiles
+  has_many :emailing_logs,      :through => :issues
+  has_many :emailing_link_logs, :through => :issues
+  has_many :tracking_logs,      :through => :issues
 
   def self.frequency_unit
     @@frequency_unit ||= %w( day week month )

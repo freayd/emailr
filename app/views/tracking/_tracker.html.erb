@@ -1,0 +1,12 @@
+<script type="text/javascript">
+<!--
+try{Emailr_r=top.document.referrer;}catch(e){Emailr_r=document.referrer;}Emailr_d=new Date();Emailr_s=screen;
+Emailr_r=Emailr_r.replace(/[<>"]/g,'').replace(/&/g,'$');Emailr_u=location.href.replace(/[<>"]/g,'').replace(/&/g,'$');
+Emailr_params='c=<%= current_customer.id %>&u='+Emailr_u+'&r='+Emailr_r+'&t='+Emailr_d.getHours()+':'+Emailr_d.getMinutes()+':'+Emailr_d.getSeconds()+
+'&sw='+Emailr_s.width+'&sh='+Emailr_s.height+'&sp='+Emailr_s.pixelDepth+'&sc='+Emailr_s.colorDepth;
+document.write('<img src="<%= tracking_logger_url %>?'+Emailr_params+'" alt="" width="0" height="0" />');
+//-->
+</script>
+<noscript>
+<img src="<%=  tracking_logger_url %>?c=<%= current_customer.id %>" alt="" width="0" height="0" />
+</noscript>

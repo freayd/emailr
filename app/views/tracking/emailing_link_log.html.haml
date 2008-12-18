@@ -1,0 +1,12 @@
+%table.listing
+  %tr
+    %th Visiteur
+    %th Newsletter
+    %th Redirigé sur
+    %th Loggé le
+  - @logs.each do |log|
+    %tr
+      %td&= log.visitor_id
+      %td=  link_to log.issue.newsletter.name, log.issue.newsletter
+      %td=  link_to log.forward_to
+      %td&= log.created_at

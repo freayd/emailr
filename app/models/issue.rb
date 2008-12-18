@@ -4,6 +4,9 @@ class Issue < ActiveRecord::Base
   belongs_to :newsletter
   has_many :deliveries
   has_many :addressees, :through => :deliveries, :source => :subscriber
+  has_many :emailing_logs
+  has_many :emailing_link_logs
+  has_many :tracking_logs
 
   validates_presence_of  :deliver_at
   validates_inclusion_of :deliver, :in => [ true, false ]
