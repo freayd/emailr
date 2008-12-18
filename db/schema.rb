@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20081218055213) do
     t.integer  "issue_id"
     t.integer  "subscriber_id"
     t.datetime "sended_at"
+    t.boolean  "failure"
   end
 
   create_table "emailing_link_logs", :force => true do |t|

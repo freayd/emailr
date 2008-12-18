@@ -1,0 +1,13 @@
+%h1 Statistiques
+
+- unless @deliveries_count
+  Aucun email n'a été envoyé.
+- else
+
+  %div
+    Pourcentage d'erreurs lors de l'envoi des emails :
+    = number_to_percentage(@delivery_failure_percent)
+  %div
+    Pourcentage d'email lus :
+    = number_to_percentage(@readed_percent)
+

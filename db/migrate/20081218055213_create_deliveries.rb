@@ -4,6 +4,7 @@ class CreateDeliveries < ActiveRecord::Migration
       t.references :issue,      :null_allowed => false
       t.references :subscriber, :null_allowed => false
       t.datetime :sended_at
+      t.boolean  :failure
     end
   end
 

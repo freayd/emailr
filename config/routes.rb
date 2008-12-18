@@ -31,6 +31,10 @@ ActionController::Routing::Routes.draw do |map|
     track.tracking_log      'tracking/log/tracking',      :action => 'tracking_log'
   end
 
+  map.with_options :controller => 'stats', :conditions => { :method => :get } do |st|
+    st.stats 'stats', :action => 'index'
+  end
+
   map.namespace :backend do |backend|
     backend.resource :session, :only => [ :new, :create, :destroy ]
     backend.login  '/login',  :controller => 'sessions', :action => 'new',     :name_prefix => 'admin_', :conditions => { :method => :get    }

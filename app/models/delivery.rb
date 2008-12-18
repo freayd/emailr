@@ -2,11 +2,14 @@ class Delivery < ActiveRecord::Base
   belongs_to :issue
   belongs_to :subscriber
 
-  before_create :fill_sended_at
+  before_create :simulate
 
   protected
-    # Remplissage de la date d'envoi pour tester.
-    def fill_sended_at
+    # Simule l'envoi du mail.
+    def simulate
+      return unless issue_id?
+
       write_attribute(:sended_at, issue.deliveries.size.minutes.from_now.to_datetime)
+      write_attribute(:failure, rand > 0.85 ? 1 : 0)
     end
 end

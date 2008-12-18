@@ -62,7 +62,7 @@ fr:
 
   number:
     format:
-      precision: 3
+      precision: 2
       separator: ','
       delimiter: ' '
     currency:
